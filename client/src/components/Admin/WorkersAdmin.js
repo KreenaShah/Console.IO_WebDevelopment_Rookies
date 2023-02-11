@@ -18,6 +18,7 @@ import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 import VerifiedIcon from "@mui/icons-material/Verified";
 
 import { StyledTableCell , StyledTableRow} from "./VerificationAdmin";
+import '../../App.css'
 
 export const columns = [
     { id: "id", label: "Id", minWidth: 45 },
@@ -202,6 +203,7 @@ const WorkersComponent = () => (
 
     return ( 
         <>
+        <div className="clientBg" style={{height: "105vh"}}>
         <Grid container spacing={2}>
           <Grid item xs={2}>
             <Sidebar />
@@ -211,6 +213,7 @@ const WorkersComponent = () => (
             <WorkersComponent/>
           </Grid>
         </Grid>
+        </div>
       </>
      );
 }

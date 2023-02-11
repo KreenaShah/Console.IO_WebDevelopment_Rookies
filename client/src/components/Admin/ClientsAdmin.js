@@ -177,6 +177,7 @@ const ClientsComponent = () => (
 
     return ( 
         <>
+        <div className="clientBg" style={{height: "105vh"}}>
         <Grid container spacing={2}>
           <Grid item xs={2}>
             <Sidebar />
@@ -186,6 +187,7 @@ const ClientsComponent = () => (
             <ClientsComponent/>
           </Grid>
         </Grid>
+        </div>
       </>
      );
 }

@@ -179,6 +179,7 @@ const ClientOrders = () => {
                     </TableContainer>
                 </Grid>
             </Grid>
+            </div>
         </>
     );
 }

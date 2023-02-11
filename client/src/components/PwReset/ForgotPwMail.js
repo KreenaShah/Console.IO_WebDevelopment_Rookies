@@ -120,7 +120,7 @@ function ForgotPwMail() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "#f5f5f5",
+          backgroundColor: "#569f5d",
         }}
       >
         <Box
@@ -141,7 +141,7 @@ function ForgotPwMail() {
             <Typography
               sx={{
                 fontSize: 30,
-                color: "#3bb19b",
+                color: "#569f5d",
                 fontWeight: "bold",
                 display: "flex",
                 justifyContent: "center",
@@ -171,7 +171,7 @@ function ForgotPwMail() {
               variant="contained"
               sx={{
                 mt: 3,
-                backgroundColor: "#3bb19b",
+                backgroundColor: "#569f5d",
                 borderRadius: 4,
                 width: "20ch",
               }}

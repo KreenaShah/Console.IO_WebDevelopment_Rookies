@@ -19,7 +19,7 @@ import { Link, useNavigate } from "react-router-dom";
 const theme = createTheme({
   palette: {
     naigara: {
-      main: "#3bb19b",
+      main: "#569f5d",
     },
   },
 });
@@ -152,7 +152,7 @@ function ResetPw() {
             <Typography
               sx={{
                 fontSize: 30,
-                color: "#3bb19b",
+                color: "#569f5d",
                 fontWeight: "bold",
                 display: "flex",
                 justifyContent: "center",
@@ -262,7 +262,7 @@ function ResetPw() {
               variant="contained"
               sx={{
                 mt: 3,
-                backgroundColor: "#3bb19b",
+                backgroundColor: "#569f5d",
                 borderRadius: 4,
                 width: "20ch",
               }}
