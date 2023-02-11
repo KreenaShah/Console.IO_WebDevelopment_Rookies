@@ -22,9 +22,15 @@ export const Sidebar = () => {
 
     // for responsiveness
   const [width, setWindowWidth] = useState(0);
+  const [isVerified,setVerified]=useState(false);
+  console.log("isVerified",isVerified);
 
   useEffect(() => {
     updateDimensions();
+    if(localStorage.getItem("isVerified")==="true")
+    setVerified(true);
+    else
+    setVerified(false);
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
   }, []);
@@ -80,7 +86,7 @@ export const Sidebar = () => {
           <UserIcon name="Worker" />
           <ListItem>
           <Link to="/worker/orders" style={linkStyle} className='links'>
-            <ShowButton>
+            <ShowButton disabled={!isVerified}>
             <DashboardOutlinedIcon
                 style={{ color: "##9e9e9e", paddingRight: "1rem" }}
               />
@@ -101,8 +107,18 @@ export const Sidebar = () => {
             </Link>
           </ListItem>
           <ListItem>
-          <Link to="/worker/notifications" style={linkStyle}>
+          <Link to="/worker/profile/edit" style={linkStyle} className='links'>
             <ShowButton>
+              <GroupOutlinedIcon
+                style={{ color: "##9e9e9e", paddingRight: "1rem"}}
+              />
+              Edit Profile
+            </ShowButton>
+            </Link>
+          </ListItem>
+          <ListItem>
+          <Link to="/worker/notifications" style={linkStyle}>
+            <ShowButton  disabled={!isVerified}>
             <QuestionAnswerOutlinedIcon
                 style={{ color: "##9e9e9e", paddingRight: "1rem" }}
               />

@@ -3,6 +3,10 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const { UserModel, ResetPwEmailModel } = require('../model/model');
 const bcrypt = require('bcrypt');
+const {
+    WorkerProfile,
+    validateWorkerProfile,
+} = require("../model/workerProfileSchema");
 
 const sendemail = require('../middlewares/emailer');
 const crypto = require('crypto');
@@ -122,12 +126,12 @@ router.post('/pwReset', async (req, res) => {
 
             reEmail.deleteOne({ email: req.body.email });
             return res.json({
-                reset:"success"
+                reset: "success"
             })
         }
         return res.json({
-            message:"Reset"
-        })  
+            message: "Reset"
+        })
         // console.log(req);
     }
     catch (err) {
@@ -140,11 +144,11 @@ router.post('/signup/:role', async (req, res, next) => {
         var fname = req.body.fname;
         var lname = req.body.lname;
         var email = req.body.email;
-        var access_lvl=req.params.role;
+        var access_lvl = req.params.role;
         var hash = req.body.password;
 
         var password = await bcrypt.hash(hash, 10);
-        const user = await UserModel.create({ fname, lname, email, password,access_lvl });
+        const user = await UserModel.create({ fname, lname, email, password, access_lvl });
 
         user.save();
 
@@ -176,17 +180,39 @@ router.post('/login', async (req, res, next) => {
             return res.json({ message: 'Wrong Password' });
         }
 
-        var access_lvl=user.access_lvl;
-
+        var access_lvl = user.access_lvl;
         const body = { _id: user._id, email: user.email };
         const token = jwt.sign({ user: body }, 'TOP_SECRET');
+        var isVerified = user.isVerified;
+        const jsonResponse = { token, access_lvl, isVerified };
         // user.token=token;
         // user.save();
-        return res.json({ token,access_lvl });
+        return res.json(jsonResponse);
     } catch (err) {
         res.json({
-            error: err
+            error: "Login Error"
         });
+    }
+})
+
+router.post('/admin/addNewAdmin', async (req, res, next) => {
+    try {
+        var fname = req.body.fname;
+        var lname = req.body.lname;
+        var email = req.body.email;
+        var unHashedpassword = req.body.password;
+        var access_lvl = "admin";
+        var password = await bcrypt.hash(unHashedpassword, 10);
+        var isVerified = "true";
+        const user = await UserModel.create({ fname, lname, email, password, access_lvl, isVerified });
+        user.save();
+        res.json({
+            message: "Success",
+            user: req.body
+        });
+    }
+    catch (err) {
+        console.log(err);
     }
 })
 

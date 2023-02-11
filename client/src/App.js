@@ -19,9 +19,12 @@ import VerificationTable from './components/Admin/VerificationAdmin';
 import ClientProfile from './components/Client/clientProf';
 import ClientQuery from './components/Client/clientQuery';
 import OrdersTable from './components/Worker/Orders';
+import ClientDetails from './components/Client/clientDetails';
+import WorkerDetails from './components/Worker/workerDetails';
 
 function App() {
   const user = localStorage.getItem("secret_token");
+  const isVerified=localStorage.getItem("isVerified");
   return (
     <div className="App">
       <Routes>
@@ -30,15 +33,17 @@ function App() {
         <Route path="/register/client" element={<ClientRegister />}></Route>
 
         <Route path="/login" element={<Login />}></Route>
-        
+
         <Route path="/password-reset" element={<ForgotPwMail />}></Route>
         <Route path="/pwReset" element={<ResetPw />}></Route>
 
-        {user && <Route path="/worker/profile" element={<WorkerProf />}></Route>}
-        {user && <Route path="/worker/orders" element={<OrdersTable />}></Route>}
-        {user && <Route path="/worker/notifications" element={<OrdersTable />}></Route>} {/* Left To Do */}
+        {user && <Route path="/worker/profile" element={<WorkerDetails />}></Route>}
+        {user && <Route path="/worker/profile/edit" element={<WorkerProf />}></Route>}
+        {user && isVerified && <Route path="/worker/orders" element={<OrdersTable />}></Route>}
+        {user && isVerified && <Route path="/worker/notifications" element={<OrdersTable />}></Route>} {/* Left To Do */}
 
-        {user && <Route path="/client/profile" element={<ClientProfile />}></Route>}
+        {user && <Route path="/client/profile" element={<ClientDetails />}></Route>}
+        {user && <Route path="/client/profile/edit" element={<ClientProfile />}></Route>}
         {user && <Route path="/client/rquery" element={<ClientQuery />}></Route>}
         {user && <Route path="/client/notifications" element={<ClientQuery />}></Route>} {/* Left To Do */}
 

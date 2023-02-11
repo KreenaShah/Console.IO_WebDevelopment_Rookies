@@ -10,7 +10,7 @@ const workerProfileSchema = new mongoose.Schema({
   experience: { type: String, require: true },
   age: { type: Number, require: true },
   gender: { type: String, require: true },
-  image: { type: String, require: true },
+  image: { type: String, require: true }
 });
 
 const WorkerProfile = mongoose.model("workerProfile", workerProfileSchema);

@@ -80,22 +80,23 @@ function Login() {
     fetch("http://localhost:3000/login", requestOptions)
       .then(response => {
         localStorage.removeItem("secret_token");
+        localStorage.removeItem("isVerified");
         return response.json();
       })
       .then(result => {
         console.log(result);
         localStorage.setItem("secret_token", result.token);
+        localStorage.setItem("isVerified", result.isVerified);
         return result;
       })
       .then(r => {
-        if (r.token)
-        {
-          if(r.access_lvl==="worker")
-          return navigate('/worker/profile');
-          else if(r.access_lvl==="client")
-          return navigate('/client/profile');
-          else if(r.access_lvl==="admin")
-          return navigate('/admin/dashboard');
+        if (r.token) {
+          if (r.access_lvl === "worker") 
+            return navigate('/worker/profile');
+          else if (r.access_lvl === "client")
+            return navigate('/client/profile');
+          else if (r.access_lvl === "admin")
+            return navigate('/admin/dashboard');
         }
       })
       .catch(err => console.log('error', err));
@@ -245,18 +246,18 @@ function Login() {
               marginBottom: 0
             }} >
               <Link to="/password-reset">
-              <Button
-                sx={{
-                  backgroundColor: "#fff",
-                  borderRadius: 4,
-                  width: "20ch",
-                  mt: 1.5,
-                }}
-              >
-                <Typography sx={{ fontSize:13,textTransform: "capitalize"}}>
-                  Forgot Password?
-                </Typography>
-              </Button>
+                <Button
+                  sx={{
+                    backgroundColor: "#fff",
+                    borderRadius: 4,
+                    width: "20ch",
+                    mt: 1.5,
+                  }}
+                >
+                  <Typography sx={{ fontSize: 13, textTransform: "capitalize" }}>
+                    Forgot Password?
+                  </Typography>
+                </Button>
               </Link>
             </Box>
             <Button
@@ -269,7 +270,7 @@ function Login() {
                 width: "20ch",
               }}
             >
-              <Typography sx={{ color: "#fff", textTransform: "none", fontSize:22 }}>
+              <Typography sx={{ color: "#fff", textTransform: "none", fontSize: 22 }}>
                 Login
               </Typography>
             </Button>

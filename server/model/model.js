@@ -18,6 +18,10 @@ const UserSchema = new Schema({
     access_lvl:{
         type: String
     },
+    isVerified:{
+        type:String,
+        default:false
+    },
 });
 
 const ResetPwEmails=new Schema({

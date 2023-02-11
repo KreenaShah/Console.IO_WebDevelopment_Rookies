@@ -101,6 +101,16 @@ export const Sidebar = () => {
             </Link>
           </ListItem>
           <ListItem>
+          <Link to="/client/profile/edit" style={linkStyle} className='links'>
+            <ShowButton>
+              <GroupOutlinedIcon
+                style={{ color: "##9e9e9e", paddingRight: "1rem"}}
+              />
+              Edit Profile
+            </ShowButton>
+            </Link>
+          </ListItem>
+          <ListItem>
           <Link to="/client/notifications" style={linkStyle}>
             <ShowButton>
             <QuestionAnswerOutlinedIcon
