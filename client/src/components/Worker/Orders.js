@@ -136,12 +136,19 @@ const WorkerOrders = () => {
                     <StyledTableCell component="th" scope="row">
                       {clientIssue.category}
                     </StyledTableCell>
-                    <StyledTableCell>
+                    <StyledTableCell sx={{display:"flex"}}>
                       <TextField type="number"
-                      id="outlined-basic"
-                      label="Quotation"
-                      variant="outlined"
+                        id="outlined-basic"
+                        label="Quotation"
+                        variant="outlined"
                       />
+                      <Button
+                        sx={{ marginLeft: 1,backgroundColor:"rgba(0,0,0,0.2)" }}
+                        variant="contained"
+                        onClick={() => deleteClientIssues(clientIssue._id)}
+                      >
+                        <CheckBoxIcon />
+                      </Button>
                       {/* {clientIssue.negotiated} */}
                     </StyledTableCell>
                     <StyledTableCell>
