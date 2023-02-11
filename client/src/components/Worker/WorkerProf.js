@@ -61,6 +61,7 @@ const WorkerProfile = () => {
     age: "",
     gender: "",
     image: "",
+    email:""
   });
 
   const handleChange = (e) => {
@@ -93,6 +94,7 @@ const WorkerProfile = () => {
     formdata.append("experience", data.experience);
     formdata.append("age", data.age);
     formdata.append("gender", data.gender);
+    formdata.append("email", data.email);
     console.log("After appending in formData");
     try {
       let response = await axios.post(url, formdata);
@@ -172,6 +174,14 @@ const WorkerProfile = () => {
                   sx={{ width: "28ch", marginTop: 3 }}
                   label="City"
                   name="city"
+                  size="small"
+                  color="white"
+                  onChange={handleChange}
+                />
+                <TextField
+                  sx={{ width: "28ch", marginTop: 3 }}
+                  label="Email"
+                  name="email"
                   size="small"
                   color="white"
                   onChange={handleChange}

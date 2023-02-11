@@ -5,6 +5,7 @@ const {
   editClientProfile,
   deleteClientProfile,
 } = require("../controller/clientProfileController");
+
 const { upload } = require("../middlewares/clientImageMulter");
 const express = require("express");
 const router = express.Router();

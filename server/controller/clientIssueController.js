@@ -11,12 +11,13 @@ const addClientIssue = async (request, response) => {
   // console.log("Image declare krne ke baad", image);
 
   const {
-    client,
+    clientEmail,
     issue,
     category,
   } = request.body;
 
   const clientIssue = {
+    clientEmail,
     issue,
     category,
   };
@@ -27,7 +28,7 @@ const addClientIssue = async (request, response) => {
   }
 
   const newClientIssue = new ClientIssue({
-    client,
+    clientEmail,
     issue,
     category,
   });

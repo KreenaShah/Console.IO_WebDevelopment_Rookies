@@ -51,8 +51,8 @@ function App() {
         {user && <Route path="/client/notifications" element={<ClientOrders />}></Route>} {/* Left To Do */}
 
         {user && <Route path="/admin/dashboard" element={<Admin />}></Route>}
-        {user && <Route path="/admin/workers" element={<Clients />}></Route>}
-        {user && <Route path="/admin/clients" element={<Workers />}></Route>}
+        {user && <Route path="/admin/clients" element={<Clients />}></Route>}
+        {user && <Route path="/admin/workers" element={<Workers />}></Route>}
         {user && <Route path="/admin/verification" element={<VerificationTable />}></Route>}
         {user && <Route path="/admin/addnewadmins" element={<AddAdminComponent />}></Route>}
         

@@ -93,12 +93,12 @@ const VerificationAdmin = () => {
 
     const getAllworkerProfiles = async () => {
       try {
-        let response = await axios.get(`${URL}/worker/allWorkerProfiles`);
+        let response = await axios.get(`${URL}/worker/unverifiedWorkerProfiles`);
         setWorkerProfiles(response.data);
         console.log(workerProfiles);
         // console.log(workerProfiles[0]);
       } catch (error) {
-        console.log("Error while calling /client/allClientProfiles API");
+        console.log("Error while calling /client/unverfiedWorker API");
       }
     };
   // for responsiveness
@@ -117,6 +117,25 @@ const VerificationAdmin = () => {
 
   const response = { responsive: width < 670 };
   const resp = response.responsive;
+
+  const verifyWorkerProfiles=async(id)=>{
+    try{
+      let response=await axios.get(`${URL}/worker/verify/${id}`);
+      console.log(response);
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
+  const rejectWorkerProfiles=async(id)=>{
+    try{
+      let response=await axios.get(`${URL}/worker/reject/${id}`);
+      console.log(response);
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
 
   // const [page, setPage] = React.useState(0);
   // const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -205,6 +224,9 @@ const VerificationAdmin = () => {
                       <Button
                         sx={{ marginLeft: 3 }}
                         variant="contained"
+                        onClick={()=>{
+                          verifyWorkerProfiles(workerProfile._id)
+                        }}
                         // onClick={() => deleteWorkerProfiles(workerProfile._id)}
                       >
                         <CheckIcon />
@@ -215,6 +237,9 @@ const VerificationAdmin = () => {
                       <Button
                         sx={{ marginLeft: 3, backgroundColor: "#ff0000" }}
                         variant="contained"
+                        onClick={()=>{
+                          rejectWorkerProfiles(workerProfile._id)
+                        }}
                         // onClick={() => deleteWorkerProfiles(workerProfile._id)}
                       >
                         <CloseIcon />

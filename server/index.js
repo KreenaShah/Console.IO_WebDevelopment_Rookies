@@ -32,7 +32,7 @@ app.use('/', routes);
 app.use('/user', passport.authenticate('jwt', { session: false }), secureRoute);
 app.use('/worker',workerProfileRoute);
 app.use("/client", clientProfileRoute);
-app.use('/client',clientIssueRoute);
+app.use('/clientIssue',clientIssueRoute);
 
 // Handle errors.
 app.use(function(err, req, res, next) {

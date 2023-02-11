@@ -10,7 +10,8 @@ const workerProfileSchema = new mongoose.Schema({
   experience: { type: String, require: true },
   age: { type: Number, require: true },
   gender: { type: String, require: true },
-  image: { type: String, require: true }
+  image: { type: String, require: true },
+  email:{type:String}
 });
 
 const WorkerProfile = mongoose.model("workerProfile", workerProfileSchema);
@@ -25,6 +26,7 @@ const validateWorkerProfile = (data) => {
     experience: Joi.string().required().label("Experience"),
     age: Joi.number().required().label("Age"),
     gender: Joi.string().required().label("Gender"),
+    email: Joi.string().required().label("Email"),
     image: Joi.string().required().label("DocUpload"),
   });
   return schema.validate(data);

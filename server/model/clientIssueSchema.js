@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Joi = require("joi");
 
 const clientIssueSchema = new mongoose.Schema({
-  client:{type:String},
+  clientEmail:{type:String},
   issue: { type: String, require: true },
   category: { type: String, require: true },
   negotiated: { type: Number, default: 0 },
@@ -10,7 +10,7 @@ const clientIssueSchema = new mongoose.Schema({
 
 const quotationSchema = new mongoose.Schema({
   quotation:{type:Number},
-  worker:{type:String},
+  workerEmail:{type:String},
 })
 
 const ClientIssue = mongoose.model("clientIssue", clientIssueSchema);
@@ -20,6 +20,8 @@ const validateClientIssue = (data) => {
   const schema = Joi.object({
     issue: Joi.string().required().label("Issue"),
     category: Joi.string().required().label("Category"),
+    clientEmail: Joi.string().required().label("Email"),
+    negotiated: Joi.string().label("Negotiated"),
   });
   return schema.validate(data);
 };

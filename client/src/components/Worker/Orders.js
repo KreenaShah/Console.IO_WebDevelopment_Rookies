@@ -39,7 +39,7 @@ const WorkerOrders = () => {
 
   const getAllClientIssues = async () => {
     try {
-      let response = await axios.get(`${URL}/client/allClientIssues`);
+      let response = await axios.get(`${URL}/clientIssue/allClientIssues`);
       // console.log(response.data[0].name);
       // const workerProfileArray = Object.entries(response.data)
       // console.log("kreena")

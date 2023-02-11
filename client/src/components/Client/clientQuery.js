@@ -92,6 +92,7 @@ const CQUery = () => {
     var urlencoded = new URLSearchParams();
     urlencoded.append("issue", data.issue);
     urlencoded.append("category", data.category);
+    urlencoded.append("clientEmail", data.clientEmail);
 
     var requestOptions = {
       method: 'POST',
@@ -169,6 +170,14 @@ const CQUery = () => {
               name="issue"
               multiline
               maxRows={4}
+              size="small"
+              onChange={handleChange}
+            />
+            <TextField
+              variant="outlined"
+              sx={{ backgroundColor: "#fff", marginTop: 3, width: "35ch" }}
+              label="Your Email"
+              name="clientEmail"
               size="small"
               onChange={handleChange}
             />

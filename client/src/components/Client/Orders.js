@@ -25,6 +25,7 @@ import { StyledTableCell, StyledTableRow } from "../Admin/VerificationAdmin";
 const URL = "http://localhost:3000";
 
 export const columns = [
+    {id:"clientEmail",labee:"Email"},
     { id: "issue", label: "Issue" },
     { id: "category", label: "Category" },
     { id: "negotiated", label: "Negotiated" },
@@ -37,12 +38,13 @@ const ClientOrders = () => {
         getAllClientIssues();
     }, []);
 
-    const getAllClientIssues = async () => {
+    const getAllClientIssues = async (id) => {
         try {
-            let response = await axios.get(`${URL}/client/allClientIssues`);
+            console.log("kreena")
+            let response = await axios.get(`${URL}/clientIssue/specificClientIssues/${id}`);
+            // console.log("kreena2")
             // console.log(response.data[0].name);
             // const workerProfileArray = Object.entries(response.data)
-            // console.log("kreena")
             // console.log(typeof(workerProfileArray));
             // console.log(workerProfileArray);
             setClientIssues(response.data);

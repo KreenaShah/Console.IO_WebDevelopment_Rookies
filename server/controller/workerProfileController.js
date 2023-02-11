@@ -2,6 +2,7 @@ const {
   WorkerProfile,
   validateWorkerProfile,
 } = require("../model/workerProfileSchema");
+const { UserModel } = require('../model/model');
 
 const addWorkerProfile = async (request, response) => {
   console.log("workerProfilecontroller => addWorkerProfile");
@@ -19,6 +20,7 @@ const addWorkerProfile = async (request, response) => {
     experience,
     age,
     gender,
+    email,
   } = request.body;
 
   const workerProfile = {
@@ -31,6 +33,7 @@ const addWorkerProfile = async (request, response) => {
     age,
     gender,
     image,
+    email,
   };
   const { error } = validateWorkerProfile(workerProfile);
   if (error) {
@@ -48,6 +51,7 @@ const addWorkerProfile = async (request, response) => {
     age,
     gender,
     image,
+    email,
   });
   try {
     console.log("try");
@@ -67,6 +71,39 @@ const getWorkerProfiles = async (request, response) => {
     response.status(404).json({ message: error.message });
   }
 };
+const getUnverifiedWorkerProfiles = async (request, response) => {
+  // const workerProfs = [];
+  try {
+    const users = await UserModel.find({ isVerified: "false", access_lvl: "worker" });
+    // users.forEach(async (u) => {
+    //   var email = u.email;
+    //   const workerProfile = await WorkerProfile.findOne({ email });
+    //   workerProfs.push(workerProfile);
+    // })
+    lookForUsers(users).then(workerProfile=>{
+      response.status(200).json(workerProfile);
+    }).catch(err=>{
+      console.log(err);
+    })
+    
+  } catch (error) {
+    response.status(404).json({ message: error.message });
+  }
+};
+
+async function lookForUsers(users) {
+  let workerProfs = [];
+  for (let u of users) {
+    try {
+      let found = await WorkerProfile.findOne({ email: u.email }).exec();
+      workerProfs.push(found);
+    } catch (e) {
+      console.log(`did not find rider ${rider} in database`);
+    }
+  }
+  console.log(workerProfs);
+  return workerProfs;
+}
 
 const getWorkerProfile = async (request, response) => {
   try {
@@ -103,11 +140,50 @@ const deleteWorkerProfile = async (request, response) => {
   }
 };
 
+const verifyWorkerProfile = async (request, response) => {
+  try {
+    const workerProfile = await WorkerProfile.findOne({
+      _id: request.params.id,
+    });
+
+    const email = workerProfile.email;
+    const user = await UserModel.findOne({ email });
+    user.isVerified = "true";
+    user.save();
+
+    //EMIAL BHEJNA HAI
+
+    response.status(200).json(user);
+  } catch (error) {
+    response.status(404).json({ message: error.message });
+  }
+}
+const rejectWorkerProfile = async (request, response) => {
+  try {
+    const workerProfile = await WorkerProfile.findOne({
+      _id: request.params.id,
+    });
+
+    const email = workerProfile.email;
+    const user = await UserModel.findOne({ email });
+    user.isVerified = "false";
+    user.save();
+
+    //EMIAL BHEJNA HAI
+
+    response.status(200).json(user);
+  } catch (error) {
+    response.status(404).json({ message: error.message });
+  }
+}
 
 module.exports = {
   addWorkerProfile,
   getWorkerProfiles,
+  getUnverifiedWorkerProfiles,
   getWorkerProfile,
   editWorkerProfile,
   deleteWorkerProfile,
+  verifyWorkerProfile,
+  rejectWorkerProfile,
 };
