@@ -6,8 +6,8 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { styled } from "@mui/material/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
-import { Sidebar } from "./sidebar-admin";
-import { NavBar } from "./navbar-admin";
+import { Sidebar } from "./SidebarAdmin";
+import { NavBar } from "./NavbarAdmin";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import TableContainer from "@mui/material/TableContainer";
@@ -16,81 +16,59 @@ import * as React from "react";
 import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 import VerifiedIcon from "@mui/icons-material/Verified";
 
-import { StyledTableCell , StyledTableRow} from "./verification-admin";
+import { StyledTableCell , StyledTableRow} from "./VerificationAdmin";
 
 export const columns = [
-    { id: "id", label: "Id", minWidth: 45 },
+    { id: "id", label: "Id", minWidth: 10 },
     { id: "name", label: "Name", minWidth: 60 , align:"center"},
     {
-      id: "category",
-      label: "Category",
+      id: "contact",
+      label: "contact",
       minWidth: 60,
       align: "center",
       format: (value) => value.toLocaleString("en-US"),
     },
     {
-      id: "gender",
-      label: "gender",
+      id: "email",
+      label: "email",
       minWidth: 60,
       align: "center",
       format: (value) => value.toLocaleString("en-US"),
-    },
-    {
-      id: "city",
-      label: "city",
-      minWidth: 60,
-      align: "center",
-      format: (value) => value.toLocaleString("en-US"),
-    },
-    {
-      id: "idproof",
-      label: "ID Proof",
-      minWidth: 70,
-      align: "center",
-      // format: (value) => value.toFixed(2),
     },
   ];
   
-  export function createData(id, name , category,gender, city ,idproof) {
-    return {id, name , category,gender, city ,idproof };
+  export function createData(id, name , contact, email) {
+    return {id, name , contact, email };
   }
 
   export const data = [
     createData(
       "1",
       "Ramlal",
-      "Plumber",
-      "Male",
-      "Mumbai",
-      "Aadhar",
+      "1234567890",
+      "abc@mail.com",
     ),
     createData(
       "2",
       "Ramlal",
-      "Plumber",
-      "Male",
-      "Mumbai",
-      "Aadhar",
+      "1234567890",
+      "abc@mail.com",
     ),
     createData(
       "3",
       "Ramlal",
-      "Plumber",
-      "Male",
-      "Mumbai",
-      "Aadhar",
+      "1234567890",
+      "abc@mail.com",
     ),
     createData(
       "4",
       "Ramlal",
-      "Plumber",
-      "Male",
-      "Mumbai",
-      "Aadhar",
+      "1234567890",
+      "abc@mail.com",
     ),
   ];
 
-const Workers = () => {
+const Clients = () => {
 // for responsiveness
 const [width, setWindowWidth] = useState(0);
 
@@ -127,7 +105,7 @@ const handleDelete = (id) => {
   setRows(rows.filter((row) => row.id !== id));
 };
 
-const WorkersComponent = () => (
+const ClientsComponent = () => (
     <Paper
       sx={{
         width: "90%",
@@ -176,10 +154,8 @@ const WorkersComponent = () => (
                       {row.id}
                     </TableCell>
                     <TableCell align="center">{row.name}</TableCell>
-                    <TableCell align="center">{row.category}</TableCell>
-                    <TableCell align="center">{row.gender}</TableCell>
-                    <TableCell align="center">{row.city}</TableCell>
-                    <TableCell align="center">{row.idproof}</TableCell>
+                    <TableCell align="center">{row.contact}</TableCell>
+                    <TableCell align="center">{row.email}</TableCell>
 
                   </StyledTableRow>
                 );
@@ -207,11 +183,11 @@ const WorkersComponent = () => (
           </Grid>
           <Grid item xs={10}>
             <NavBar />
-            <WorkersComponent/>
+            <ClientsComponent/>
           </Grid>
         </Grid>
       </>
      );
 }
  
-export default Workers;
+export default Clients;

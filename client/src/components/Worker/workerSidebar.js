@@ -110,12 +110,6 @@ export const Sidebar = () => {
             </ShowButton>
             </Link>
           </ListItem>
-          <ShowButton
-            style={{ position: "relative", top: "50%", right: "17%" }}
-          >
-            <SettingsIcon style={{ color: "##9e9e9e", paddingRight: "1rem" }} />
-            Settings
-          </ShowButton>
         </List>
       </Drawer>
     );

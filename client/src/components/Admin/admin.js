@@ -14,8 +14,8 @@ import Grid from "@mui/material/Grid";
 import EngineeringIcon from '@mui/icons-material/Engineering';
 import PersonIcon from '@mui/icons-material/Person';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Sidebar } from "./sidebar-admin";
-import { NavBar } from "./navbar-admin";
+import { Sidebar } from "./SidebarAdmin";
+import { NavBar } from "./NavbarAdmin";
 import {
   Chart as ChartJS,
   LineElement,

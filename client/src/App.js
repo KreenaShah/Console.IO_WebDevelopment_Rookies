@@ -11,34 +11,35 @@ import AllListing from './components/Listing/AllListing';
 import { Routes, Route, Navigate } from "react-router-dom";
 import WorkerReg from './components/Worker/WorkerReg';
 import MapWithRouting from './components/GMaps/Map';
+import Admin from './components/Admin/Admin';
+import Clients from './components/Admin/ClientsAdmin';
+import Workers from './components/Admin/WorkersAdmin';
+import LandingComponent from './components/Home/landing';
+import VerificationTable from './components/Admin/VerificationAdmin';
+import ClientProfile from './components/Client/clientProf';
+import ClientQuery from './components/Client/clientQuery';
 
 function App() {
   const user = localStorage.getItem("secret_token");
   return (
     <div className="App">
       <Routes>
-        {user && <Route path="/client/home" element={<Home />}></Route>}
-        {user && <Route path="/addListing" element={<AddListing />}></Route>}
-        {user && <Route path="/allListing" element={<AllListing />}></Route>}
-        {user && <Route path="/worker/profile" element={<WorkerProf />}></Route>}
-        <Route path="/" element={<Main />}></Route>
-        <Route path="/login" element={<Login />}></Route>
+        <Route path="/" element={<LandingComponent />}></Route>
         <Route path="/register/worker" element={<WorkerReg />}></Route>
         <Route path="/register/client" element={<ClientRegister />}></Route>
+        <Route path="/login" element={<Login />}></Route>
         <Route path="/password-reset" element={<ForgotPwMail />}></Route>
         <Route path="/pwReset" element={<ResetPw />}></Route>
+        {user && <Route path="/worker/profile" element={<WorkerProf />}></Route>}
+        {user && <Route path="/client/profile" element={<ClientProfile />}></Route>}
+        {user && <Route path="/client/rquery" element={<ClientQuery />}></Route>}
+        {user && <Route path="/client/notifications" element={<ClientQuery />}></Route>} {/* Left To Do */}
+        {user && <Route path="/admin/dashboard" element={<Admin />}></Route>}
+        {user && <Route path="/admin/workers" element={<Clients />}></Route>}
+        {user && <Route path="/admin/clients" element={<Workers />}></Route>}
+        {user && <Route path="/admin/verification" element={<VerificationTable />}></Route>}
+        
         <Route path='/map' element={<MapWithRouting />}></Route>
-        <Route path="/verification-admin" element={<Verification />}></Route>
-        <Route path="/workers-admin" element={<Workers />}></Route>
-        <Route path="/clients-admin" element={<Clients />}></Route>
-        <Route path="/landing" element={<LandingComponent />}></Route>
-        <Route path="/" element={<Admin />}>
-        </Route>
-        <Route
-          path="/addListing"
-          element={<Navigate replace to="/login" />}
-        ></Route>
-        <Route path="/home" element={<Navigate replace to="/login" />}></Route>
       </Routes>
     </div>
   );

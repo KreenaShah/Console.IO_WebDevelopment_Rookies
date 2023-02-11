@@ -93,8 +93,9 @@ function Login() {
           if(r.access_lvl==="worker")
           return navigate('/worker/profile');
           else if(r.access_lvl==="client")
-          return navigate('/client/home');
-      
+          return navigate('/client/profile');
+          else if(r.access_lvl==="admin")
+          return navigate('/admin/dashboard');
         }
       })
       .catch(err => console.log('error', err));
@@ -290,7 +291,7 @@ function Login() {
           <Typography sx={{ fontSize: 28, fontWeight: "bold" }}>
             New here ?
           </Typography>
-          <Link to="/register">
+          <Link to="/">
             <Button
               variant="contained"
               sx={{

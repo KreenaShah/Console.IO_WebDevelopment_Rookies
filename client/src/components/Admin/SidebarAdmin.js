@@ -14,8 +14,7 @@ import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import * as React from "react";
 import { hover } from "@testing-library/user-event/dist/hover";
-import '../App.css'
-
+import './AdminSideBar.css';
 
 export const Sidebar = () => {
     // const classes = useStyles();
@@ -79,7 +78,7 @@ export const Sidebar = () => {
         >
           <UserIcon name="Admin" />
           <ListItem>
-          <Link to="/" style={linkStyle} className='links'>
+          <Link to="/admin/dashboard" style={linkStyle} className='links'>
             <ShowButton>
             <DashboardOutlinedIcon
                 style={{ color: "##9e9e9e", paddingRight: "1rem" }}
@@ -91,7 +90,7 @@ export const Sidebar = () => {
             </Link>
           </ListItem>
           <ListItem>
-          <Link to="/workers-admin" style={linkStyle} className='links'>
+          <Link to="/admin/workers" style={linkStyle} className='links'>
             <ShowButton>
               <GroupOutlinedIcon
                 style={{ color: "##9e9e9e", paddingRight: "1rem"}}
@@ -101,7 +100,7 @@ export const Sidebar = () => {
             </Link>
           </ListItem>
           <ListItem>
-          <Link to="/clients-admin" style={linkStyle} className='links'>
+          <Link to="/admin/clients" style={linkStyle} className='links'>
             <ShowButton>
               <GroupOutlinedIcon
                 style={{ color: "##9e9e9e", paddingRight: "1rem"}}
@@ -111,7 +110,7 @@ export const Sidebar = () => {
             </Link>
           </ListItem>
           <ListItem>
-          <Link to="/verification-admin" style={linkStyle}>
+          <Link to="/admin/verification" style={linkStyle}>
             <ShowButton>
             <QuestionAnswerOutlinedIcon
                 style={{ color: "##9e9e9e", paddingRight: "1rem" }}
@@ -120,12 +119,6 @@ export const Sidebar = () => {
             </ShowButton>
             </Link>
           </ListItem>
-          <ShowButton
-            style={{ position: "relative", top: "38%", right: "17%" }}
-          >
-            <SettingsIcon style={{ color: "##9e9e9e", paddingRight: "1rem" }} />
-            Settings
-          </ShowButton>
         </List>
       </Drawer>
     );

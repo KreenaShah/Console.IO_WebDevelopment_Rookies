@@ -79,7 +79,7 @@ export const Sidebar = () => {
         >
           <UserIcon name="Client" />
           <ListItem>
-          <Link to="/" style={linkStyle} className='links'>
+          <Link to="/client/rquery" style={linkStyle} className='links'>
             <ShowButton>
             <DashboardOutlinedIcon
                 style={{ color: "##9e9e9e", paddingRight: "1rem" }}
@@ -91,7 +91,7 @@ export const Sidebar = () => {
             </Link>
           </ListItem>
           <ListItem>
-          <Link to="/workers-admin" style={linkStyle} className='links'>
+          <Link to="/client/profile" style={linkStyle} className='links'>
             <ShowButton>
               <GroupOutlinedIcon
                 style={{ color: "##9e9e9e", paddingRight: "1rem"}}
@@ -101,7 +101,7 @@ export const Sidebar = () => {
             </Link>
           </ListItem>
           <ListItem>
-          <Link to="/verification-admin" style={linkStyle}>
+          <Link to="/client/notifications" style={linkStyle}>
             <ShowButton>
             <QuestionAnswerOutlinedIcon
                 style={{ color: "##9e9e9e", paddingRight: "1rem" }}
@@ -110,12 +110,6 @@ export const Sidebar = () => {
             </ShowButton>
             </Link>
           </ListItem>
-          <ShowButton
-            style={{ position: "relative", top: "50%", right: "17%" }}
-          >
-            <SettingsIcon style={{ color: "##9e9e9e", paddingRight: "1rem" }} />
-            Settings
-          </ShowButton>
         </List>
       </Drawer>
     );

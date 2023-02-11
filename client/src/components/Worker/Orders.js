@@ -1,4 +1,4 @@
-import { Table, TableHead, TableBody, TableRow, Button } from "@mui/material";
+import { Table, TableHead, TableBody, TableRow, Button, TextField } from "@mui/material";
 // import {getUsers , deleteUser} from '../service/api.js';
 import { useEffect, useState } from "react";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -6,8 +6,8 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { styled } from "@mui/material/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
-import { Sidebar } from "./sidebar-admin";
-import { NavBar } from "./navbar-admin";
+import { Sidebar } from "./workerSidebar";
+import { NavBar } from "./workerNavbar";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import TableContainer from "@mui/material/TableContainer";
@@ -16,6 +16,7 @@ import * as React from "react";
 import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { createTheme } from '@mui/material/styles';
+import { Box } from "@mui/material";
 
 export const mytheme = createTheme({
   status: {
@@ -64,8 +65,8 @@ export const columns = [
     format: (value) => value.toLocaleString("en-US"),
   },
   {
-    id: "idproof",
-    label: "ID Proof",
+    id: "issue",
+    label: "Issue",
     minWidth: 70,
     align: "center",
     // format: (value) => value.toFixed(2),
@@ -86,14 +87,15 @@ export const columns = [
   },
 ];
 
-export function createData(id, name, category, idproof, accept, reject) {
-  return { id, name, category, idproof, accept, reject };
+export function createData(id, name, category, issue, accept, reject) {
+  return { id, name, category, issue, accept, reject };
 }
 
 const AcceptBtn = styled(Button)({
   color: "white",
   backgroundColor: "green",
-  // fontSize: resp ? "0.8rem" : "1rem",
+  fontSize: 12,
+//   fontSize: resp ? "0.8rem" : "1rem",
   p: "10px",
   "&:hover": {
     backgroundColor: "white",
@@ -105,6 +107,7 @@ const AcceptBtn = styled(Button)({
 const RejectBtn = styled(Button)({
   color: "white",
   backgroundColor: "red",
+  fontSize: 12,
   // fontSize: resp ? "0.8rem" : "1rem",
   p: "10px",
   "&:hover": {
@@ -149,7 +152,7 @@ export const data = [
   ),
 ];
 
-const VerificationTable = () => {
+const OrdersTable = () => {
   // for responsiveness
   const [width, setWindowWidth] = useState(0);
 
@@ -186,7 +189,7 @@ const VerificationTable = () => {
     setRows(rows.filter((row) => row.id !== id));
   };
 
-  const VerificationComponent = () => (
+  const OrderComponent = () => (
     <Paper
       sx={{
         width: "90%",
@@ -236,14 +239,23 @@ const VerificationTable = () => {
                     </TableCell>
                     <TableCell align="center">{row.name}</TableCell>
                     <TableCell align="center">{row.category}</TableCell>
-                    <TableCell align="center">{row.idproof}</TableCell>
-                    <TableCell align="center">
-                      <AcceptBtn
-                        onClick={() => handleDelete(row.id)}
-                      >
-                        Accept
-                      </AcceptBtn>
-                    </TableCell>
+                    <TableCell align="center">{row.issue}</TableCell>
+                    <Box sx={{display: 'flex', alignItems:'center', justifyContent: 'center'}}>
+                        <TextField 
+                        sx={{ width: "12ch" }}
+                        type='number'
+                        label="Price"
+                        name="price"
+                        size="small"
+                        />
+                        <TableCell align="center">
+                        <AcceptBtn
+                            onClick={() => handleDelete(row.id)}
+                        >
+                            Accept
+                        </AcceptBtn>
+                        </TableCell>
+                    </Box>
                     <TableCell align="center">
                       <RejectBtn
                         onClick={() => handleDelete(row.id)}
@@ -278,11 +290,11 @@ const VerificationTable = () => {
         </Grid>
         <Grid item xs={10}>
           <NavBar />
-          <VerificationComponent />
+          <OrderComponent />
         </Grid>
       </Grid>
     </>
   );
 };
 
-export default VerificationTable;
+export default OrdersTable;
