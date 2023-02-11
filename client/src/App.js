@@ -21,6 +21,7 @@ import ClientQuery from './components/Client/clientQuery';
 import OrdersTable from './components/Worker/Orders';
 import ClientDetails from './components/Client/clientDetails';
 import WorkerDetails from './components/Worker/workerDetails';
+import AddAdminComponent from './components/Admin/AddAdmin';
 
 function App() {
   const user = localStorage.getItem("secret_token");
@@ -51,6 +52,7 @@ function App() {
         {user && <Route path="/admin/workers" element={<Clients />}></Route>}
         {user && <Route path="/admin/clients" element={<Workers />}></Route>}
         {user && <Route path="/admin/verification" element={<VerificationTable />}></Route>}
+        {user && <Route path="/admin/addnewadmins" element={<AddAdminComponent />}></Route>}
         
         <Route path='/map' element={<MapWithRouting />}></Route>
       </Routes>

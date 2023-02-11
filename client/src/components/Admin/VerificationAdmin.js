@@ -16,6 +16,7 @@ import * as React from "react";
 import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { createTheme } from '@mui/material/styles';
+import axios from "axios";
 
 export const mytheme = createTheme({
   status: {
@@ -86,9 +87,9 @@ export const columns = [
   },
 ];
 
-export function createData(id, name, category, idproof, accept, reject) {
-  return { id, name, category, idproof, accept, reject };
-}
+// export function createData(id, name, category, idproof, accept, reject) {
+//   return { id, name, category, idproof, accept, reject };
+// }
 
 const AcceptBtn = styled(Button)({
   color: "white",
@@ -113,41 +114,43 @@ const RejectBtn = styled(Button)({
     border: "2px solid red",
   },
 });
+var data;
+// export const data = [
+//   createData(
+//     "1",
+//     "Ramlal",
+//     "Plumber",
+//     "Aadhar",
+//     <AcceptBtn>Accept</AcceptBtn>,
+//     <RejectBtn>Reject</RejectBtn>
+//   ),
+//   createData(
+//     "2",
+//     "Ramlal",
+//     "Plumber",
+//     "Aadhar",
+//     <AcceptBtn>Accept</AcceptBtn>,
+//     <RejectBtn>Reject</RejectBtn>
+//   ),
+//   createData(
+//     "3",
+//     "Ramlal",
+//     "Plumber",
+//     "Aadhar",
+//     <AcceptBtn>Accept</AcceptBtn>,
+//     <RejectBtn>Reject</RejectBtn>
+//   ),
+//   createData(
+//     "4",
+//     "Ramlal",
+//     "Plumber",
+//     "Aadhar",
+//     <AcceptBtn>Accept</AcceptBtn>,
+//     <RejectBtn>Reject</RejectBtn>
+//   ),
+// ];
 
-export const data = [
-  createData(
-    "1",
-    "Ramlal",
-    "Plumber",
-    "Aadhar",
-    <AcceptBtn>Accept</AcceptBtn>,
-    <RejectBtn>Reject</RejectBtn>
-  ),
-  createData(
-    "2",
-    "Ramlal",
-    "Plumber",
-    "Aadhar",
-    <AcceptBtn>Accept</AcceptBtn>,
-    <RejectBtn>Reject</RejectBtn>
-  ),
-  createData(
-    "3",
-    "Ramlal",
-    "Plumber",
-    "Aadhar",
-    <AcceptBtn>Accept</AcceptBtn>,
-    <RejectBtn>Reject</RejectBtn>
-  ),
-  createData(
-    "4",
-    "Ramlal",
-    "Plumber",
-    "Aadhar",
-    <AcceptBtn>Accept</AcceptBtn>,
-    <RejectBtn>Reject</RejectBtn>
-  ),
-];
+
 
 const VerificationTable = () => {
   // for responsiveness
@@ -180,7 +183,21 @@ const VerificationTable = () => {
     setPage(0);
   };
 
-  const [rows, setRows] = useState(data);
+  useEffect(() => {
+    getWorkers();
+  }, []);
+
+  const [rows, setRows] = useState([]);
+  const getWorkers = async () => {
+    try {
+      let response = await axios.get('http://localhost:3000/getUnverifiedWorkers');
+      data=response.data;
+      setRows(response.data);
+    } catch (error) {
+      console.log("Error while calling getUsers API");
+    }
+  };
+  
 
   const handleDelete = (id) => {
     setRows(rows.filter((row) => row.id !== id));

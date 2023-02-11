@@ -17,9 +17,9 @@ import { hover } from "@testing-library/user-event/dist/hover";
 import './AdminSideBar.css';
 
 export const Sidebar = () => {
-    // const classes = useStyles();
+  // const classes = useStyles();
 
-    // for responsiveness
+  // for responsiveness
   const [width, setWindowWidth] = useState(0);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export const Sidebar = () => {
   const resp = response.responsive;
   //
 
-  const linkStyle = {color:'white', textDecoration:'none', "&:hover":{color:'black'}}
+  const linkStyle = { color: 'white', textDecoration: 'none', "&:hover": { color: 'black' } }
 
   const UserIcon = (props) => (
     <div
@@ -66,60 +66,70 @@ export const Sidebar = () => {
     },
   });
 
-    return (
-      <Drawer variant="permanent" anchor="left">
-        <List
-          style={{
-            backgroundColor: "#2D8D79",
-            height: "100vh",
-            width: "17vw",
-            // pl: "2rem",
-          }}
-        >
-          <UserIcon name="Admin" />
-          <ListItem>
+  return (
+    <Drawer variant="permanent" anchor="left">
+      <List
+        style={{
+          backgroundColor: "#2D8D79",
+          height: "100vh",
+          width: "17vw",
+          // pl: "2rem",
+        }}
+      >
+        <UserIcon name="Admin" />
+        <ListItem>
           <Link to="/admin/dashboard" style={linkStyle} className='links'>
             <ShowButton>
-            <DashboardOutlinedIcon
+              <DashboardOutlinedIcon
                 style={{ color: "##9e9e9e", paddingRight: "1rem" }}
               />
-                
+
               Dashboard
-                
+
             </ShowButton>
-            </Link>
-          </ListItem>
-          <ListItem>
+          </Link>
+        </ListItem>
+        <ListItem>
           <Link to="/admin/workers" style={linkStyle} className='links'>
             <ShowButton>
               <GroupOutlinedIcon
-                style={{ color: "##9e9e9e", paddingRight: "1rem"}}
+                style={{ color: "##9e9e9e", paddingRight: "1rem" }}
               />
               Workers
             </ShowButton>
-            </Link>
-          </ListItem>
-          <ListItem>
+          </Link>
+        </ListItem>
+        <ListItem>
           <Link to="/admin/clients" style={linkStyle} className='links'>
             <ShowButton>
               <GroupOutlinedIcon
-                style={{ color: "##9e9e9e", paddingRight: "1rem"}}
+                style={{ color: "##9e9e9e", paddingRight: "1rem" }}
               />
               Clients
             </ShowButton>
-            </Link>
-          </ListItem>
-          <ListItem>
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link to="/admin/addnewadmins" style={linkStyle} className='links'>
+            <ShowButton>
+              <GroupOutlinedIcon
+                style={{ color: "##9e9e9e", paddingRight: "1rem" }}
+              />
+              Clients
+            </ShowButton>
+          </Link>
+        </ListItem>
+        <ListItem>
           <Link to="/admin/verification" style={linkStyle}>
             <ShowButton>
-            <QuestionAnswerOutlinedIcon
+              <QuestionAnswerOutlinedIcon
                 style={{ color: "##9e9e9e", paddingRight: "1rem" }}
               />
               Verification
             </ShowButton>
-            </Link>
-          </ListItem>
-        </List>
-      </Drawer>
-    );
-  };
+          </Link>
+        </ListItem>
+      </List>
+    </Drawer>
+  );
+};

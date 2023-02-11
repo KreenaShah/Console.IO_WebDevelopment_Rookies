@@ -216,6 +216,23 @@ router.post('/admin/addNewAdmin', async (req, res, next) => {
     }
 })
 
+// router.get('/getUnverifiedWorkers', async (req, res, next) => {
+//     try {
+//         const user = await UserModel.find({ isVerified: "false" });
+//         if (user) {
+//             user.forEach(async (u)=>{
+//                 // const workers = await WorkerProfile.find({ email: u.email })
+//                 // res.json(workers);
+//             })
+//         }
+//     }
+//     catch (err) {
+//         res.json({
+//             message: "Cant send"
+//         })
+//     }
+// })
+
 
 // router.post(
 //     '/signup',
