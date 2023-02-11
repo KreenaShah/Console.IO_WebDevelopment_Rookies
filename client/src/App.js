@@ -11,12 +11,22 @@ import AllListing from './components/Listing/AllListing';
 import { Routes, Route, Navigate } from "react-router-dom";
 import WorkerReg from './components/Worker/WorkerReg';
 import MapWithRouting from './components/GMaps/Map';
+import ClientsAdmin from './components/Admin/ClientsAdmin';
+import WorkersAdmin from './components/Admin/WorkersAdmin';
+import ClientProf from './components/Client/ClientProf';
+import VerificationAdmin from './components/Admin/VerificationAdmin';
 
 function App() {
   const user = localStorage.getItem("secret_token");
   return (
     <div className="App">
-      <Routes>
+      <WorkersAdmin/>
+      {/* <WorkerProf /> */}
+      {/* <ClientsAdmin/> */}
+      {/* <ClientProf /> */}
+      {/* <VerificationAdmin/> */}
+
+      {/* <Routes>
         {user && <Route path="/client/home" element={<Home />}></Route>}
         {user && <Route path="/addListing" element={<AddListing />}></Route>}
         {user && <Route path="/allListing" element={<AllListing />}></Route>}
@@ -39,7 +49,7 @@ function App() {
           element={<Navigate replace to="/login" />}
         ></Route>
         <Route path="/home" element={<Navigate replace to="/login" />}></Route>
-      </Routes>
+      </Routes> */}
     </div>
   );
 }

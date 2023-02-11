@@ -19,6 +19,7 @@ import MultiSelect from "react-multiple-select-dropdown-lite";
 import { Sidebar } from "./clientSidebar";
 import { NavBar } from "./clientNavbar";
 import Grid from "@mui/material/Grid";
+import axios from 'axios'
 
 const theme = createTheme({
   palette: {
@@ -28,19 +29,9 @@ const theme = createTheme({
   },
 });
 
-const defaultValue = {
-  category: "",
-  issue: '',
-};
-  
-
 const ClientProf = () => {
-  const [user, setUser] = useState(defaultValue);
 
   const [error, setError] = useState({});
-
-  const [rule, setrule] = useState("");
-const [ammenities, setammenities] = useState("");
 
 const [data , setData] = useState({
     name : '',
@@ -57,68 +48,33 @@ const [data , setData] = useState({
     setData({...data , image:e.target.files[0]})
   }
 
-const handleRule = (val) => {
-    console.log(val);
-    console.log(rule);
-    setrule(val);
-    console.log(rule);
-    setData({ ...data, rules: val });
-  };
-
-const RuleOptions = [
-    { label: "Option 1", value: "option_1" },
-    { label: "Option 2", value: "option_2" },
-    { label: "Option 3", value: "option_3" },
-    { label: "Option 4", value: "option_4" },
-    ]
-
   const handleChange = (e) => {
     console.log(e.target.name, e.target.value);
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
-
-  const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
+    setData({ ...data, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
-    // console.log("Handle submit")
+    console.log(data);
+    console.log(data.image, data.image.name);
+    console.log("Handle Submit");
     e.preventDefault();
-    // console.log(user)
-    console.log("before validate");
-    setError(validate(user));
-    console.log("after validate");
-    console.log(error);
-    console.log("after printing error");
-    
-    console.log(user);
-    console.log("before fetch api ");
-
+    let url = "http://localhost:3000/client/addClientProfile";
+    const formdata = new FormData();
+    formdata.append("file", data.image);
+    formdata.append("name", data.name);
+    formdata.append("contact", data.contact);
+    formdata.append("email", data.email);
+    formdata.append("address", data.address);
+    console.log("After appending in formData");
     try {
-      const response = await fetch("http://localhost:8080/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-          
-        const responseInJSON = await response.json();
-        // console.log(responeInJSON.token);
-        localStorage.setItem("token" , responseInJSON.token);
-        if(responseInJSON.token){
-          window.location='/home';
-        }
-      
-    } catch (error) {
-      console.log(error);
-      // if(error.response && error.response.status >= 400  && error.response.status <= 500) {
-      //     setError(error.response.data.message)
-      // }
+      let response = await axios.post(url, formdata);
+      if (response.status === 200) {
+        console.log(
+          "/client/addClientProfile API successfully called from frontend"
+        );
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -188,7 +144,7 @@ const RuleOptions = [
             <TextField
                   sx={{ width: "40ch" }}
                   label="Name"
-                  value={user.name}
+                  // value={user.name}
                   name="name"
                   size="small"
                   onChange={handleChange}
@@ -198,7 +154,7 @@ const RuleOptions = [
                   sx={{ width: "40ch", marginTop: 2 }}
                   label="Address"
                   name="address"
-                  value={user.address}
+                  // value={user.address}
                   multiline
                   maxRows={4}
                   size="small"
@@ -209,7 +165,7 @@ const RuleOptions = [
                   sx={{ width: "40ch", marginTop: 2 }}
                   type='number'
                   label="Contact"
-                  value={user.contact}
+                  // value={user.contact}
                   name="contact"
                   size="small"
                   onChange={handleChange}
@@ -222,7 +178,7 @@ const RuleOptions = [
               label="Email"
               placeholder="Email"
               name="email"
-              value={user.email}
+              // value={user.email}
               onChange={handleChange}
               size="small"
               color="naigara"
@@ -236,7 +192,7 @@ const RuleOptions = [
                   required
               id="outlined-required"
               type="file"
-              value={user.upload}
+              // value={user.upload}
               color="naigara"
               sx={{ mt: 2, width: "40ch" }}
                 />
@@ -253,7 +209,7 @@ const RuleOptions = [
               }}
             >
               <Typography sx={{ color: "#fff", textTransform: "none" }}>
-                Send
+                Create Profile
               </Typography>
             </Button>
           </form>

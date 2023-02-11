@@ -13,7 +13,7 @@ const ClientProfile = mongoose.model("clientProfile", clientProfileSchema);
 
 const validateClientProfile = (data) => {
   const schema = Joi.object({
-    name: Joi.string().alphanum().required().label("Name"),
+    name: Joi.string().required().label("Name"),
     address: Joi.string().required().label("Address"),
     contact: Joi.number().required().label("Contact"),
     email: Joi.string()

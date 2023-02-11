@@ -17,7 +17,8 @@ require('./auth/auth');
 
 const routes = require('./routes/routes');
 const secureRoute = require('./routes/secure-routes');
-const workerProfileRoute = require('./routes/workerProfileRoutes')
+const workerProfileRoute = require('./routes/workerProfileRoutes');
+const clientProfileRoute = require("./routes/clientProfileRoutes");
 
 const app = express();
 app.use(cors());
@@ -29,6 +30,7 @@ app.use('/', routes);
 // Plug in the JWT strategy as a middleware so only verified users can access this route.
 app.use('/user', passport.authenticate('jwt', { session: false }), secureRoute);
 app.use('/worker',workerProfileRoute);
+app.use("/client", clientProfileRoute);
 
 // Handle errors.
 app.use(function(err, req, res, next) {
