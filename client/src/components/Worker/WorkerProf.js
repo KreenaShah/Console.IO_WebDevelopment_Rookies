@@ -1,17 +1,17 @@
 import Navbar from "../Navbar";
-import React, { useState } from 'react'
-import { Box, TextField , Typography,Button } from "@mui/material";
+import React, { useState } from "react";
+import { Box, TextField, Typography, Button } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from 'axios';
+import axios from "axios";
 // import {ToastContainer , toast} from 'react-toastify';
 import MultiSelect from "react-multiple-select-dropdown-lite";
 import "react-multiple-select-dropdown-lite/dist/index.css";
-import '../Listing/Listing.css'
+import "../Worker/WorkerProf.css";
 
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const theme = createTheme({
   palette: {
@@ -25,81 +25,82 @@ const theme = createTheme({
 });
 
 function WorkerProf() {
-    const [rule, setrule] = useState("");
-    const [ammenities, setammenities] = useState("");
+  const [expertise, setExpertise] = useState("");
+  const [ammenities, setammenities] = useState("");
 
-    const handleRule = (val) => {
-      console.log(val);
-      console.log(rule);
-      setrule(val);
-      console.log(rule);
-      setData({ ...data, rules: val });
-    };
+  const handleRule = (val) => {
+    console.log(val);
+    console.log(expertise);
+    setExpertise(val);
+    console.log(expertise);
+    setData({ ...data, expertise: val });
+  };
 
-    const [gender, setGender] = React.useState('');
+  const [gender, setGender] = React.useState("");
 
-    const handleGender = (event) => {
-      setGender(event.target.value);
-    };
+  const handleGender = (event) => {
+    setGender(event.target.value);
+  };
 
-    const RuleOptions = [
-      { label: "Option 1", value: "option_1" },
-      { label: "Option 2", value: "option_2" },
-      { label: "Option 3", value: "option_3" },
-      { label: "Option 4", value: "option_4" },
-    ]
+  const RuleOptions = [
+    { label: "Option 1", value: "option_1" },
+    { label: "Option 2", value: "option_2" },
+    { label: "Option 3", value: "option_3" },
+    { label: "Option 4", value: "option_4" },
+  ];
 
-    const [data , setData] = useState({
-      name : '',
-      description : '',
-      city : '',
-      contact : '',
-      experties : '',
-      experience : '',
-      age : '',
-      gender : ''
-    })
+  const [data, setData] = useState({
+    name: "",
+    description: "",
+    city: "",
+    contact: "",
+    expertise: "",
+    experience: "",
+    age: "",
+    gender: "",
+    image: "",
+  });
 
-    const handleChange = (e) => {
-      console.log("Handle Chnage")
-     console.log(e.target.name, e.target.value);
-      setData({...data , [e.target.name]:e.target.value})
-    }
+  const handleChange = (e) => {
+    console.log("Handle Change");
+    console.log(e.target.name, e.target.value);
+    setData({ ...data, [e.target.name]: e.target.value });
+    console.log(data);
+  };
 
-    const handleImageUpload = (e) => {
-      console.log("Handle Image Upload");
-      console.log(e.target.files[0]);
-      console.log(e.target.files[0].name);
-      setData({...data , image:e.target.files[0]})
-    }
+  const handleImageUpload = (e) => {
+    console.log("Handle Image Upload");
+    console.log(e.target.files[0]);
+    console.log(e.target.files[0].name);
+    setData({ ...data, image: e.target.files[0] });
+  };
 
-    const handleSubmit = async (e) => {
-      console.log(data);
-      console.log(data.image, data.image.name);
-      console.log("Handle Submit");
-      e.preventDefault();
-      let url = "http://localhost:8080/addListing";
-      const formdata = new FormData();
-      formdata.append("file", data.image);
-      formdata.append("name", data.name);
-      formdata.append("description", data.description);
-      formdata.append("location", data.location);
-      formdata.append("startDate", data.startDate);
-      formdata.append("endDate", data.endDate);
-      formdata.append("expertise", data.expertise);
-      formdata.append("price", data.price);
-      formdata.append("noOfPeople", data.noOfPeople);
-      formdata.append("ammenities", data.ammenities);
-      console.log("After appending in formData");
-      try {
-        let response = await axios.post(url , formdata)
-        if(response.status === 200) {
-          console.log("addListing API successfully called from frontend");
-        }
-      } catch(e) {
-        console.log(e);
+  const handleSubmit = async (e) => {
+    console.log(data);
+    console.log(data.image, data.image.name);
+    console.log("Handle Submit");
+    e.preventDefault();
+    let url = "http://localhost:3000/worker/addWorkerProfile";
+    const formdata = new FormData();
+    formdata.append("file", data.image);
+    formdata.append("name", data.name);
+    formdata.append("description", data.description);
+    formdata.append("city", data.city);
+    formdata.append("contact", data.contact);
+    formdata.append("expertise", data.expertise);
+    formdata.append("experience", data.experience);
+    formdata.append("age", data.age);
+    formdata.append("gender", data.gender);
+    console.log("After appending in formData");
+    try {
+      let response = await axios.post(url, formdata);
+      if (response.status === 200) {
+        console.log("addWorkerProfile API successfully called from frontend");
       }
+    } catch (e) {
+      console.log(e);
     }
+  };
 
   return (
     <div>
@@ -121,11 +122,11 @@ function WorkerProf() {
                 fontSize: 40,
                 fontWeight: "bold",
                 paddingTop: 3,
-                marginBottom: 2.5,
+                marginBottom: 1,
                 textAlign: "center",
               }}
             >
-                Worker's Profile
+              Worker's Profile
             </Typography>
             <Box
               sx={{
@@ -175,7 +176,7 @@ function WorkerProf() {
                 />
                 <TextField
                   sx={{ width: "28ch", marginTop: 3 }}
-                  type='number'
+                  type="number"
                   label="Contact"
                   name="contact"
                   size="small"
@@ -189,6 +190,7 @@ function WorkerProf() {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
+                  alignItems:"center",
                   width: 500,
                   backgroundColor: "#fff",
                   borderTopRightRadius: 20,
@@ -197,7 +199,7 @@ function WorkerProf() {
                 }}
               >
                 <MultiSelect
-                  sx={{ backgroundColor: "#fff", marginTop: 3 }}
+                  sx={{ backgroundColor: "#fff", marginTop: 2 }}
                   name="expertise"
                   placeholder="Expertise"
                   className="multi-select"
@@ -208,11 +210,15 @@ function WorkerProf() {
                   sx={{
                     display: "flex",
                     justifyContent: "center",
+                    alignItems:"center"
                   }}
                 >
                   <TextField
                     type="number"
-                    sx={{ width: "20ch", marginRight: 2, marginTop: 3 }}
+                    sx={{ width: "21ch",
+                     marginRight: 2, 
+                    marginTop: 2
+                     }}
                     size="small"
                     label="Experience (Yrs)"
                     name="experience"
@@ -221,7 +227,10 @@ function WorkerProf() {
                   />
                   <TextField
                     type="number"
-                    sx={{ width: "10ch", marginLeft: 2, marginTop: 3 }}
+                    sx={{ width: "10ch", 
+                    marginLeft: 2,
+                     marginTop: 2
+                   }}
                     size="small"
                     label="Age"
                     name="age"
@@ -229,22 +238,42 @@ function WorkerProf() {
                     onChange={handleChange}
                   />
                 </Box>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label" className="multi-select" sx={{ marginLeft: '6em'}}>Gender</InputLabel>
+                <FormControl>
+                  <InputLabel
+                    id="demo-simple-select-label"
+                    className="multi-select"
+                    sx={{mt:2}}
+                  >
+                    Gender
+                  </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    sx={{ width: "35ch", marginLeft: '6em'}}
+                    sx={{ width: "33.5ch"
+                     }}
                     className="multi-select"
-                    value={gender}
+                    name="gender"
+                    // value={gender}
                     label="Age"
-                    onChange={handleGender}
+                    size="small"
+                    placeholder="Gender"
+                    onChange={handleChange}
                   >
-                    <MenuItem value={'Male'}>Male</MenuItem>
-                    <MenuItem value={'Female'}>Female</MenuItem>
-                    <MenuItem value={'Other'}>Other</MenuItem>
+                    <MenuItem value={"Male"}>Male</MenuItem>
+                    <MenuItem value={"Female"}>Female</MenuItem>
+                    <MenuItem value={"Other"}>Other</MenuItem>
                   </Select>
                 </FormControl>
+                <TextField
+                  sx={{ width: "34.5ch",
+                   marginTop: 2
+                   }}
+                  name="image"
+                  type="file"
+                  size="small"
+                  color="white"
+                  onChange={handleImageUpload}
+                />
                 <Button
                   type="submit"
                   variant="contained"
@@ -256,7 +285,7 @@ function WorkerProf() {
                   }}
                 >
                   <Typography sx={{ color: "#fff", textTransform: "none" }}>
-                    Update Profile
+                    Create Profile
                   </Typography>
                 </Button>
               </Box>
@@ -269,4 +298,3 @@ function WorkerProf() {
 }
 
 export default WorkerProf;
-
