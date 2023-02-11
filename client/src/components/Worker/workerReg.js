@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
-import '../register/Register.css'
-import { Box, Button, Typography, TextField, FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton,} from "@mui/material";
+import '../Client/Register.css'
+import { Box, Button, Typography, TextField, FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton, } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import {useFormik} from 'formik';
 
 const theme = createTheme({
@@ -22,7 +22,7 @@ const defaultValue = {
   password: ""
 };
 
-function WorkerReg() {
+function WorkerRegister() {
 
   // const {
   //   values,
@@ -41,27 +41,12 @@ function WorkerReg() {
   // });
 
   const [user, setUser] = useState(defaultValue);
-  const [error, setError] = useState({});
+  const [errorS, setError] = useState({});
 
   const handleChange = (e) => {
     console.log(e.target.name, e.target.value);
     setUser({ ...user, [e.target.name]: e.target.value });
   };
-
-  const [data , setData] = useState({
-    firstName : '',
-    lastName : '',
-    image : '',
-    email : '',
-    password : '',
-  })
-
-  const handleImageUpload = (e) => {
-    console.log("Handle Image Upload");
-    console.log(e.target.files[0]);
-    console.log(e.target.files[0].name);
-    setData({...data , image:e.target.files[0]})
-  }
 
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -76,34 +61,51 @@ function WorkerReg() {
     console.log(user);
     console.log("handleSubmit");
     setError(validate(user));
-    try {
-      const response = await fetch("http://localhost:8080/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-      localStorage.setItem("token", response.data);
-      // window.location = "/home";
-      const responeInJSON = await response.json();
-      console.log(responeInJSON);
-    } catch (error) {
-      console.log(error);
-    }
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("fname",user.fname);
+    urlencoded.append("lname",user.lname);
+    urlencoded.append("email", user.email);
+    urlencoded.append("password", user.password);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow'
+    };
+
+    fetch("http://localhost:3000/signup/worker", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(err => console.log('error', err));
+    // try {
+    //   const response = await fetch("http://localhost:3000/signup", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(user),
+    //   });
+    //   // localStorage.setItem("token", response.data);
+    //   // window.location = "/home";
+    //   const responeInJSON = await response.json();
+    //   console.log(responeInJSON);
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
 
   const validate = (values) => {
     const errors = {};
     const regex = /^w+[+.w-]*@([w-]+.)*w+[w-]*.([a-z]{2,4}|d+)$/i;
-    if (!values.firstName) {
-      errors.firstName = "First Name required";
-    } 
-    if (!values.lastName) {
-      errors.lastName = "last Name required";
-    } 
-    if (!values.upload) {
-      errors.upload = "Document Required";
+    if (!values.fname) {
+      errors.fname = "First Name required";
+    }
+    if (!values.lname) {
+      errors.lname = "last Name required";
     }
     if (!values.email) {
       errors.email = "Email required";
@@ -199,28 +201,28 @@ function WorkerReg() {
               type="text"
               label="FirstName"
               placeholder="FirstName"
-              name="firstName"
-              value={user.firstName}
+              name="fname"
+              value={user.fname}
               onChange={handleChange}
               size="small"
               color="naigara"
               sx={{ mt: 2, width: "40ch" }}
             />
-            <p className="error_message">{error.firstName}</p>
+            <p className="error_message">{errorS.fname}</p>
             <TextField
               required
               id="outlined-required"
               type="text"
               label="Lastname"
               placeholder="Lastname"
-              name="lastName"
-              value={user.lastName}
+              name="lname"
+              value={user.lname}
               onChange={handleChange}
               size="small"
               color="naigara"
               sx={{ mt: 2, width: "40ch" }}
             />
-            <p className="error_message">{error.lastName}</p>
+            <p className="error_message">{errorS.lname}</p>
             <TextField
               required
               id="outlined-required"
@@ -234,7 +236,7 @@ function WorkerReg() {
               color="naigara"
               sx={{ mt: 2, width: "40ch" }}
             />
-            <p className="error_message">{error.email}</p>
+            <p className="error_message">{errorS.email}</p>
             <FormControl
               sx={{ mt: 2, width: "40ch" }}
               variant="outlined"
@@ -266,19 +268,7 @@ function WorkerReg() {
                 }
               />
             </FormControl>
-            <p className="error_message">{error.password}</p>
-            <TextField
-                  name="image"
-                  size="small"
-                  onChange={handleImageUpload}
-                  required
-              id="outlined-required"
-              type="file"
-              value={user.upload}
-              color="naigara"
-              sx={{ mt: 2, width: "40ch" }}
-                />
-              <p className="error_message">{error.upload}</p>
+            <p className="error_message">{errorS.password}</p>
 
             <Button
               type="submit"
@@ -301,4 +291,4 @@ function WorkerReg() {
   );
 }
 
-export default WorkerReg;
+export default WorkerRegister;

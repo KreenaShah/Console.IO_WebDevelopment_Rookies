@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import '../register/Register.css'
+import './Register.css'
 import { Box, Button, Typography, TextField, FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton, } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -22,7 +22,7 @@ const defaultValue = {
   password: ""
 };
 
-function Register() {
+function ClientRegister() {
 
   // const {
   //   values,
@@ -77,7 +77,7 @@ function Register() {
       redirect: 'follow'
     };
 
-    fetch("http://localhost:3000/signup", requestOptions)
+    fetch("http://localhost:3000/signup/client", requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(err => console.log('error', err));
@@ -291,4 +291,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default ClientRegister;

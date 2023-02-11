@@ -135,15 +135,16 @@ router.post('/pwReset', async (req, res) => {
     }
 });
 
-router.post('/signup', async (req, res, next) => {
+router.post('/signup/:role', async (req, res, next) => {
     try {
         var fname = req.body.fname;
         var lname = req.body.lname;
         var email = req.body.email;
+        var access_lvl=req.params.role;
         var hash = req.body.password;
 
         var password = await bcrypt.hash(hash, 10);
-        const user = await UserModel.create({ fname, lname, email, password });
+        const user = await UserModel.create({ fname, lname, email, password,access_lvl });
 
         user.save();
 
@@ -174,11 +175,14 @@ router.post('/login', async (req, res, next) => {
         if (!validate) {
             return res.json({ message: 'Wrong Password' });
         }
+
+        var access_lvl=user.access_lvl;
+
         const body = { _id: user._id, email: user.email };
         const token = jwt.sign({ user: body }, 'TOP_SECRET');
-        user.token=token;
-        user.save();
-        return res.json({ token });
+        // user.token=token;
+        // user.save();
+        return res.json({ token,access_lvl });
     } catch (err) {
         res.json({
             error: err
