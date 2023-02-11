@@ -16,7 +16,9 @@ import * as React from "react";
 import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { createTheme } from '@mui/material/styles';
+import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
+import CheckIcon from "@mui/icons-material/Check";
 
 export const mytheme = createTheme({
   status: {
@@ -54,42 +56,8 @@ export const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export const columns = [
-  { id: "id", label: "Id", minWidth: 45 },
-  { id: "name", label: "Name", minWidth: 60 , align:"center"},
-  {
-    id: "category",
-    label: "Category",
-    minWidth: 60,
-    align: "center",
-    format: (value) => value.toLocaleString("en-US"),
-  },
-  {
-    id: "idproof",
-    label: "ID Proof",
-    minWidth: 70,
-    align: "center",
-    // format: (value) => value.toFixed(2),
-  },
-  {
-    id: "accept",
-    label: "Accept",
-    minWidth: 70,
-    align: "center",
-    format: (value) => value.toFixed(2),
-  },
-  {
-    id: "reject",
-    label: "Reject",
-    minWidth: 70,
-    align: "center",
-    format: (value) => value.toFixed(2),
-  },
-];
-
-// export function createData(id, name, category, idproof, accept, reject) {
-//   return { id, name, category, idproof, accept, reject };
-// }
+const URL = "http://localhost:3000";
+const imageURL = "http://localhost:3000/workerDocImages/";
 
 const AcceptBtn = styled(Button)({
   color: "white",
@@ -114,45 +82,25 @@ const RejectBtn = styled(Button)({
     border: "2px solid red",
   },
 });
-var data;
-// export const data = [
-//   createData(
-//     "1",
-//     "Ramlal",
-//     "Plumber",
-//     "Aadhar",
-//     <AcceptBtn>Accept</AcceptBtn>,
-//     <RejectBtn>Reject</RejectBtn>
-//   ),
-//   createData(
-//     "2",
-//     "Ramlal",
-//     "Plumber",
-//     "Aadhar",
-//     <AcceptBtn>Accept</AcceptBtn>,
-//     <RejectBtn>Reject</RejectBtn>
-//   ),
-//   createData(
-//     "3",
-//     "Ramlal",
-//     "Plumber",
-//     "Aadhar",
-//     <AcceptBtn>Accept</AcceptBtn>,
-//     <RejectBtn>Reject</RejectBtn>
-//   ),
-//   createData(
-//     "4",
-//     "Ramlal",
-//     "Plumber",
-//     "Aadhar",
-//     <AcceptBtn>Accept</AcceptBtn>,
-//     <RejectBtn>Reject</RejectBtn>
-//   ),
-// ];
 
+const VerificationAdmin = () => {
 
+    const [workerProfiles, setWorkerProfiles] = useState([]);
 
-const VerificationTable = () => {
+    useEffect(() => {
+      getAllworkerProfiles();
+    }, []);
+
+    const getAllworkerProfiles = async () => {
+      try {
+        let response = await axios.get(`${URL}/worker/allWorkerProfiles`);
+        setWorkerProfiles(response.data);
+        console.log(workerProfiles);
+        // console.log(workerProfiles[0]);
+      } catch (error) {
+        console.log("Error while calling /client/allClientProfiles API");
+      }
+    };
   // for responsiveness
   const [width, setWindowWidth] = useState(0);
 
@@ -169,39 +117,24 @@ const VerificationTable = () => {
 
   const response = { responsive: width < 670 };
   const resp = response.responsive;
-  //
 
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  // const [page, setPage] = React.useState(0);
+  // const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+  // const handleChangePage = (event, newPage) => {
+  //   setPage(newPage);
+  // };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
+  // const handleChangeRowsPerPage = (event) => {
+  //   setRowsPerPage(+event.target.value);
+  //   setPage(0);
+  // };
 
-  useEffect(() => {
-    getWorkers();
-  }, []);
+  // const [rows, setRows] = useState(data);
 
-  const [rows, setRows] = useState([]);
-  const getWorkers = async () => {
-    try {
-      let response = await axios.get('http://localhost:3000/getUnverifiedWorkers');
-      data=response.data;
-      setRows(response.data);
-    } catch (error) {
-      console.log("Error while calling getUsers API");
-    }
-  };
-  
-
-  const handleDelete = (id) => {
-    setRows(rows.filter((row) => row.id !== id));
-  };
+  // const handleDelete = (id) => {
+  //   setRows(rows.filter((row) => row.id !== id));
+  // };
 
   const VerificationComponent = () => (
     <Paper
@@ -214,68 +147,8 @@ const VerificationTable = () => {
       }}
       elevation={3}
     >
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <StyledTableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </StyledTableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <StyledTableRow
-                    hover
-                    role="checkbox"
-                    tabIndex={-1}
-                    key={row.code}
-                  >
-                    {/* {columns.map((column) => {
-                    const value = row[column.id];
-                    return (
-                      <StyledTableCell key={column.id} align={column.align}>
-                        { value}
-                      </StyledTableCell>
-                    );
-                  })} */}
-                    <TableCell component="th" scope="row">
-                      {row.id}
-                    </TableCell>
-                    <TableCell align="center">{row.name}</TableCell>
-                    <TableCell align="center">{row.category}</TableCell>
-                    <TableCell align="center">{row.idproof}</TableCell>
-                    <TableCell align="center">
-                      <AcceptBtn
-                        onClick={() => handleDelete(row.id)}
-                      >
-                        Accept
-                      </AcceptBtn>
-                    </TableCell>
-                    <TableCell align="center">
-                      <RejectBtn
-                        onClick={() => handleDelete(row.id)}
-                      >
-                        Delete
-                      </RejectBtn>
-                    </TableCell>
-
-                  </StyledTableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
+     
+      {/* <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
         count={data.length}
@@ -283,7 +156,7 @@ const VerificationTable = () => {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
-      />
+      /> */}
     </Paper>
   );
 
@@ -295,11 +168,68 @@ const VerificationTable = () => {
         </Grid>
         <Grid item xs={10}>
           <NavBar />
-          <VerificationComponent />
+          {/* <VerificationComponent /> */}
+          <TableContainer
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: 7,
+              marginLeft: 4.2,
+              width: 1070,
+            }}
+          >
+            <Table stickyHeader aria-label="sticky table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>Name</StyledTableCell>
+                  <StyledTableCell>Category</StyledTableCell>
+                  <StyledTableCell>Contact</StyledTableCell>
+                  <StyledTableCell>Document</StyledTableCell>
+                  <StyledTableCell>Accept</StyledTableCell>
+                  <StyledTableCell>Reject</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {workerProfiles.map((workerProfile) => (
+                  <StyledTableRow key={workerProfile._id}>
+                    <StyledTableCell component="th" scope="row">
+                      {workerProfile.name}
+                    </StyledTableCell>
+                    <StyledTableCell component="th" scope="row">
+                      {workerProfile.expertise}
+                    </StyledTableCell>
+                    <StyledTableCell>{workerProfile.contact}</StyledTableCell>
+                    <StyledTableCell>{workerProfile.image}</StyledTableCell>
+                    <StyledTableCell>
+                      <Button
+                        sx={{ marginLeft: 3 }}
+                        variant="contained"
+                        // onClick={() => deleteWorkerProfiles(workerProfile._id)}
+                      >
+                        <CheckIcon />
+                        Accept
+                      </Button>
+                    </StyledTableCell>
+                    <StyledTableCell>
+                      <Button
+                        sx={{ marginLeft: 3, backgroundColor: "#ff0000" }}
+                        variant="contained"
+                        // onClick={() => deleteWorkerProfiles(workerProfile._id)}
+                      >
+                        <CloseIcon />
+                        Decline
+                      </Button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </Grid>
       </Grid>
     </>
   );
 };
 
-export default VerificationTable;
+export default VerificationAdmin;
