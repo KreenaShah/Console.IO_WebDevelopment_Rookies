@@ -8,7 +8,7 @@ import ResetPw from './components/PwReset/ResetPw';
 import WorkerProf from './components/Worker/WorkerProf';
 import AddListing from './components/Listing/AddListing'
 import AllListing from './components/Listing/AllListing';
-import { Routes, Route ,Navigate} from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import WorkerReg from './components/Worker/WorkerReg';
 import MapWithRouting from './components/GMaps/Map';
 
@@ -27,7 +27,13 @@ function App() {
         <Route path="/register/client" element={<ClientRegister />}></Route>
         <Route path="/password-reset" element={<ForgotPwMail />}></Route>
         <Route path="/pwReset" element={<ResetPw />}></Route>
-        <Route path='/map' element={<MapWithRouting/>}></Route>
+        <Route path='/map' element={<MapWithRouting />}></Route>
+        <Route path="/verification-admin" element={<Verification />}></Route>
+        <Route path="/workers-admin" element={<Workers />}></Route>
+        <Route path="/clients-admin" element={<Clients />}></Route>
+        <Route path="/landing" element={<LandingComponent />}></Route>
+        <Route path="/" element={<Admin />}>
+        </Route>
         <Route
           path="/addListing"
           element={<Navigate replace to="/login" />}
