@@ -10,6 +10,7 @@ import AddListing from './components/Listing/AddListing'
 import AllListing from './components/Listing/AllListing';
 import { Routes, Route ,Navigate} from "react-router-dom";
 import WorkerReg from './components/Worker/WorkerReg';
+import MapWithRouting from './components/GMaps/Map';
 
 function App() {
   const user = localStorage.getItem("secret_token");
@@ -26,6 +27,7 @@ function App() {
         <Route path="/register/client" element={<ClientRegister />}></Route>
         <Route path="/password-reset" element={<ForgotPwMail />}></Route>
         <Route path="/pwReset" element={<ResetPw />}></Route>
+        <Route path='/map' element={<MapWithRouting/>}></Route>
         <Route
           path="/addListing"
           element={<Navigate replace to="/login" />}
