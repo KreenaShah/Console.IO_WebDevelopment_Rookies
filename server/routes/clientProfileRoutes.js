@@ -1,19 +1,19 @@
 const {
-  addWorkerProfile,
-  getWorkerProfiles,
-  getWorkerProfile,
-  editWorkerProfile,
-  deleteWorkerProfile,
-} = require("../controller/workerProfileController");
-const { upload } = require("../middlewares/multer");
+  addClientProfile,
+  getClientProfiles,
+  getClientProfile,
+  editClientProfile,
+  deleteClientProfile,
+} = require("../controller/clientProfileController");
+const { upload } = require("../middlewares/clientImageMulter");
 const express = require("express");
 const router = express.Router();
 
-router.post("/addWorkerProfile", upload.single("file"), addWorkerProfile);
-router.get("/allWorkerProfiles", getWorkerProfiles);
-router.get("/:id", getWorkerProfile);
-router.put("/:id", editWorkerProfile);
-router.delete("/:id", deleteWorkerProfile);
+router.post("/addClientProfile", upload.single("file"), addClientProfile);
+router.get("/allClientProfiles", getClientProfiles);
+router.get("/:id", getClientProfile);
+router.put("/:id", editClientProfile);
+router.delete("/:id", deleteClientProfile);
 
 // router.get("/all", (req, res) => {
 //   console.log("Hey!");
