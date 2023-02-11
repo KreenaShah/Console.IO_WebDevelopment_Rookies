@@ -79,7 +79,7 @@ export const Sidebar = () => {
         >
           <UserIcon name="Worker" />
           <ListItem>
-          <Link to="/" style={linkStyle} className='links'>
+          <Link to="/worker/orders" style={linkStyle} className='links'>
             <ShowButton>
             <DashboardOutlinedIcon
                 style={{ color: "##9e9e9e", paddingRight: "1rem" }}
@@ -91,7 +91,7 @@ export const Sidebar = () => {
             </Link>
           </ListItem>
           <ListItem>
-          <Link to="/workers-admin" style={linkStyle} className='links'>
+          <Link to="/worker/profile" style={linkStyle} className='links'>
             <ShowButton>
               <GroupOutlinedIcon
                 style={{ color: "##9e9e9e", paddingRight: "1rem"}}
@@ -101,7 +101,7 @@ export const Sidebar = () => {
             </Link>
           </ListItem>
           <ListItem>
-          <Link to="/verification-admin" style={linkStyle}>
+          <Link to="/worker/notifications" style={linkStyle}>
             <ShowButton>
             <QuestionAnswerOutlinedIcon
                 style={{ color: "##9e9e9e", paddingRight: "1rem" }}

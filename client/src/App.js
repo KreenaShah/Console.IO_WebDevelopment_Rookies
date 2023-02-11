@@ -18,6 +18,7 @@ import LandingComponent from './components/Home/landing';
 import VerificationTable from './components/Admin/VerificationAdmin';
 import ClientProfile from './components/Client/clientProf';
 import ClientQuery from './components/Client/clientQuery';
+import OrdersTable from './components/Worker/Orders';
 
 function App() {
   const user = localStorage.getItem("secret_token");
@@ -27,13 +28,20 @@ function App() {
         <Route path="/" element={<LandingComponent />}></Route>
         <Route path="/register/worker" element={<WorkerReg />}></Route>
         <Route path="/register/client" element={<ClientRegister />}></Route>
+
         <Route path="/login" element={<Login />}></Route>
+        
         <Route path="/password-reset" element={<ForgotPwMail />}></Route>
         <Route path="/pwReset" element={<ResetPw />}></Route>
+
         {user && <Route path="/worker/profile" element={<WorkerProf />}></Route>}
+        {user && <Route path="/worker/orders" element={<OrdersTable />}></Route>}
+        {user && <Route path="/worker/notifications" element={<OrdersTable />}></Route>} {/* Left To Do */}
+
         {user && <Route path="/client/profile" element={<ClientProfile />}></Route>}
         {user && <Route path="/client/rquery" element={<ClientQuery />}></Route>}
         {user && <Route path="/client/notifications" element={<ClientQuery />}></Route>} {/* Left To Do */}
+
         {user && <Route path="/admin/dashboard" element={<Admin />}></Route>}
         {user && <Route path="/admin/workers" element={<Clients />}></Route>}
         {user && <Route path="/admin/clients" element={<Workers />}></Route>}

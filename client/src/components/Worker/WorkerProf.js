@@ -1,6 +1,6 @@
 import Navbar from "../Navbar";
 import React, { useState } from "react";
-import { Box, TextField, Typography, Button } from "@mui/material";
+import { Box, TextField, Typography, Button, Grid } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 // import {ToastContainer , toast} from 'react-toastify';
@@ -12,6 +12,8 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { Sidebar } from "./workerSidebar";
+import { NavBar } from "./workerNavbar";
 
 const theme = createTheme({
   palette: {
@@ -24,7 +26,7 @@ const theme = createTheme({
   },
 });
 
-function WorkerProf() {
+const WorkerProfile = () => {
   const [expertise, setExpertise] = useState("");
   const [ammenities, setammenities] = useState("");
 
@@ -104,7 +106,7 @@ function WorkerProf() {
 
   return (
     <div>
-      <Navbar />
+
       <form className="inputBox" onSubmit={handleSubmit}>
         <ThemeProvider theme={theme}>
           <div
@@ -121,7 +123,7 @@ function WorkerProf() {
               sx={{
                 fontSize: 40,
                 fontWeight: "bold",
-                paddingTop: 3,
+                paddingTop: 10,
                 marginBottom: 1,
                 textAlign: "center",
               }}
@@ -190,7 +192,7 @@ function WorkerProf() {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
-                  alignItems:"center",
+                  alignItems: "center",
                   width: 500,
                   backgroundColor: "#fff",
                   borderTopRightRadius: 20,
@@ -210,15 +212,16 @@ function WorkerProf() {
                   sx={{
                     display: "flex",
                     justifyContent: "center",
-                    alignItems:"center"
+                    alignItems: "center"
                   }}
                 >
                   <TextField
                     type="number"
-                    sx={{ width: "21ch",
-                     marginRight: 2, 
-                    marginTop: 2
-                     }}
+                    sx={{
+                      width: "21ch",
+                      marginRight: 2,
+                      marginTop: 2
+                    }}
                     size="small"
                     label="Experience (Yrs)"
                     name="experience"
@@ -227,10 +230,11 @@ function WorkerProf() {
                   />
                   <TextField
                     type="number"
-                    sx={{ width: "10ch", 
-                    marginLeft: 2,
-                     marginTop: 2
-                   }}
+                    sx={{
+                      width: "10ch",
+                      marginLeft: 2,
+                      marginTop: 2
+                    }}
                     size="small"
                     label="Age"
                     name="age"
@@ -242,15 +246,16 @@ function WorkerProf() {
                   <InputLabel
                     id="demo-simple-select-label"
                     className="multi-select"
-                    sx={{mt:2}}
+                    sx={{ mt: 2 }}
                   >
                     Gender
                   </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
-                    sx={{ width: "33.5ch"
-                     }}
+                    sx={{
+                      width: "33.5ch"
+                    }}
                     className="multi-select"
                     name="gender"
                     // value={gender}
@@ -265,9 +270,10 @@ function WorkerProf() {
                   </Select>
                 </FormControl>
                 <TextField
-                  sx={{ width: "34.5ch",
-                   marginTop: 2
-                   }}
+                  sx={{
+                    width: "34.5ch",
+                    marginTop: 2
+                  }}
                   name="image"
                   type="file"
                   size="small"
@@ -295,6 +301,21 @@ function WorkerProf() {
       </form>
     </div>
   );
+}
+function WorkerProf () {
+  return ( 
+      <>
+      <Grid container spacing={2}>
+        <Grid item xs={2}>
+          <Sidebar />
+        </Grid>
+        <Grid item xs={10}>
+          <NavBar />
+          <WorkerProfile/>
+        </Grid>
+      </Grid>
+    </>
+   );
 }
 
 export default WorkerProf;
