@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import MultiSelect from "react-multiple-select-dropdown-lite";
 import { Sidebar } from "./clientSidebar";
 import { NavBar } from "./clientNavbar";
@@ -32,39 +32,37 @@ const defaultValue = {
   category: "",
   issue: '',
 };
-  
+
 
 const CQUery = () => {
-  const [user, setUser] = useState(defaultValue);
+  const [issue, setIssue] = useState(defaultValue);
 
   const [error, setError] = useState({});
 
   const [rule, setrule] = useState("");
-const [ammenities, setammenities] = useState("");
+  const [ammenities, setammenities] = useState("");
 
-const [data , setData] = useState({
-    experties : '',
+  const [data, setData] = useState({
+    category: '',
     issue: '',
   })
 
-const handleRule = (val) => {
-    console.log(val);
-    console.log(rule);
+  const handleRule = (val) => {
     setrule(val);
-    console.log(rule);
-    setData({ ...data, rules: val });
+    setData({ ...data, category: val });
+    console.log(data);
   };
 
-const RuleOptions = [
+  const RuleOptions = [
     { label: "Option 1", value: "option_1" },
     { label: "Option 2", value: "option_2" },
     { label: "Option 3", value: "option_3" },
     { label: "Option 4", value: "option_4" },
-    ]
+  ]
 
   const handleChange = (e) => {
     console.log(e.target.name, e.target.value);
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setData({ ...data, [e.target.name]: e.target.value });
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -80,45 +78,40 @@ const RuleOptions = [
     e.preventDefault();
     // console.log(user)
     console.log("before validate");
-    setError(validate(user));
+    setError(validate(data));
     console.log("after validate");
     console.log(error);
     console.log("after printing error");
-    
-    console.log(user);
+
+    console.log(data);
     console.log("before fetch api ");
 
-    try {
-      const response = await fetch("http://localhost:8080/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
-          
-        const responseInJSON = await response.json();
-        // console.log(responeInJSON.token);
-        localStorage.setItem("token" , responseInJSON.token);
-        if(responseInJSON.token){
-          window.location='/home';
-        }
-      
-    } catch (error) {
-      console.log(error);
-      // if(error.response && error.response.status >= 400  && error.response.status <= 500) {
-      //     setError(error.response.data.message)
-      // }
-    }
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("issue", data.issue);
+    urlencoded.append("category", data.category);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow'
+    };
+
+    fetch("http://localhost:3000/client/addClientIssue", requestOptions)
+      .then(response => response.json())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
   };
 
   const validate = (values) => {
     const errors = {}
-    const regex = /^w+[+.w-]*@([w-]+.)*w+[w-]*.([a-z]{2,4}|d+)$/i;
-    if(!values.email) {
-      errors.email = "Email required"
-    }else if (!regex.test(values.email)) {
-      errors.email = "Please enter valid email";
+    if (!values.issue) {
+      errors.issue = "Issue toh raise karo sirrrrrrrrrr";
+    } else if (!values.category) {
+      errors.category = "Category tumhara baap daalega?";
     }
     return errors;
   }
@@ -163,24 +156,24 @@ const RuleOptions = [
             </Typography>
             {/* <p className="Pwtext">Enter the email adress associated with your account and we'll send you a link to reset your password.</p> */}
             <MultiSelect
-                  sx={{ backgroundColor: "#fff", marginTop: 3, width: "28ch" }}
-                  name="category"
-                  placeholder="Category"
-                  className="multi-select"
-                  onChange={handleRule}
-                  options={RuleOptions}
-                />
-                <TextField 
-                variant="outlined"
-                sx={{ backgroundColor: "#fff", marginTop: 3, width: "35ch"  }}
-                label="Issue"
-                name="issue"
-                multiline
-                maxRows={4}
-                size="small"
-                onChange={handleChange}
-                />
-            
+              sx={{ backgroundColor: "#fff", marginTop: 3, width: "28ch" }}
+              name="category"
+              placeholder="Category"
+              className="multi-select"
+              onChange={handleRule}
+              options={RuleOptions}
+            />
+            <TextField
+              variant="outlined"
+              sx={{ backgroundColor: "#fff", marginTop: 3, width: "35ch" }}
+              label="Issue"
+              name="issue"
+              multiline
+              maxRows={4}
+              size="small"
+              onChange={handleChange}
+            />
+
             <Button
               type="submit"
               variant="contained"
@@ -202,20 +195,20 @@ const RuleOptions = [
   );
 }
 
-function ClientQuery () {
-    return ( 
-        <>
-        <Grid container spacing={2}>
-          <Grid item xs={2}>
-            <Sidebar />
-          </Grid>
-          <Grid item xs={10}>
-            <NavBar />
-            <CQUery/>
-          </Grid>
+function ClientQuery() {
+  return (
+    <>
+      <Grid container spacing={2}>
+        <Grid item xs={2}>
+          <Sidebar />
         </Grid>
-      </>
-     );
+        <Grid item xs={10}>
+          <NavBar />
+          <CQUery />
+        </Grid>
+      </Grid>
+    </>
+  );
 }
 
 export default ClientQuery;

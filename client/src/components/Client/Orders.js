@@ -7,8 +7,8 @@ import { styled } from "@mui/material/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { Link } from "react-router-dom";
-import { Sidebar } from "./workerSidebar";
-import { NavBar } from "./workerNavbar";
+import { Sidebar } from "./clientSidebar";
+import { NavBar } from "./clientNavbar";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import TableContainer from "@mui/material/TableContainer";
@@ -30,7 +30,7 @@ export const columns = [
   { id: "negotiated", label: "Negotiated" },
 ];
 
-const WorkerOrders = () => {
+const ClientOrders = () => {
   const [clientIssues, setClientIssues] = useState([]);
 
   useEffect(() => {
@@ -175,4 +175,4 @@ const WorkerOrders = () => {
   );
 }
 
-export default WorkerOrders;
+export default ClientOrders;
