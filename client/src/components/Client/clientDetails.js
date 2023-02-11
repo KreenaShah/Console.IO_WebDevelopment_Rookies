@@ -89,6 +89,7 @@ const ClientDet = () => {
 function ClientDetails () {
   return ( 
       <>
+      <div className="clientBg" style={{height: "105vh"}}>
       <Grid container spacing={2}>
         <Grid item xs={2}>
           <Sidebar />
@@ -98,6 +99,7 @@ function ClientDetails () {
           <ClientDet/>
         </Grid>
       </Grid>
+      </div>
     </>
    );
 }

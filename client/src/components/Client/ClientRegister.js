@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 const theme = createTheme({
   palette: {
     naigara: {
-      main: "#3bb19b",
+      main: "#569f5d",
     }
   }
 });
@@ -128,7 +128,6 @@ function ClientRegister() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "#f5f5f5",
         }}
       >
         <Box
@@ -138,7 +137,7 @@ function ClientRegister() {
             flexDirection: "column",
             justifyContent: "center",
             width: 250,
-            backgroundColor: "#3bb19b",
+            backgroundColor: "#569f5d",
             borderTopLeftRadius: 20,
             borderBottomLeftRadius: 20,
             color: "#fff",
@@ -159,7 +158,7 @@ function ClientRegister() {
             >
               <Typography
                 sx={{
-                  color: "#3bb19b",
+                  color: "#569f5d",
                   textTransform: "none",
                   textDecoration: "none",
                 }}
@@ -186,7 +185,7 @@ function ClientRegister() {
             <Typography
               sx={{
                 fontSize: 30,
-                color: "#3bb19b",
+                color: "#569f5d",
                 fontWeight: "bold",
                 display: "flex",
                 justifyContent: "center",
@@ -275,7 +274,7 @@ function ClientRegister() {
               variant="contained"
               sx={{
                 mt: 3,
-                backgroundColor: "#3bb19b",
+                backgroundColor: "#569f5d",
                 borderRadius: 4,
                 width: "20ch",
               }}

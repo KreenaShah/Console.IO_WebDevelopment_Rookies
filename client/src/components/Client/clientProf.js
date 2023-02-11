@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "../PwReset/ForgotPwMail.css"
+import "../../App.css"
 import {
   Box,
   Button,
@@ -148,12 +148,11 @@ const RuleOptions = [
   return (
     <ThemeProvider theme={theme}>
       <Box
-        className="signUp_main_container"
         sx={{
+          marginTop: 20,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "#f5f5f5",
         }}
       >
         <Box
@@ -266,6 +265,7 @@ const RuleOptions = [
 function ClientProfile () {
     return ( 
         <>
+        <div className="clientBg" style={{height: "105vh"}}>
         <Grid container spacing={2}>
           <Grid item xs={2}>
             <Sidebar />
@@ -275,6 +275,7 @@ function ClientProfile () {
             <ClientProf/>
           </Grid>
         </Grid>
+        </div>
       </>
      );
 }

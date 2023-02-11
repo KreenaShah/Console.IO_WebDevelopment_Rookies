@@ -19,7 +19,7 @@ import { Link, useNavigate } from "react-router-dom";
 const theme = createTheme({
   palette: {
     naigara: {
-      main: "#3bb19b",
+      main: "#569f5d",
     },
   },
 });
@@ -161,7 +161,7 @@ function Login() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "#f5f5f5",
+          backgroundColor: "#569f5d",
         }}
       >
         <Box
@@ -180,7 +180,7 @@ function Login() {
             <Typography
               sx={{
                 fontSize: 30,
-                color: "#3bb19b",
+                color: "#569f5d",
                 fontWeight: "bold",
                 display: "flex",
                 justifyContent: "center",
@@ -265,7 +265,7 @@ function Login() {
               variant="contained"
               sx={{
                 mt: 3,
-                backgroundColor: "#3bb19b",
+                backgroundColor: "#569f5d",
                 borderRadius: 4,
                 width: "20ch",
               }}
@@ -283,7 +283,7 @@ function Login() {
             flexDirection: "column",
             justifyContent: "center",
             width: 250,
-            backgroundColor: "#3bb19b",
+            backgroundColor: "#569f5d",
             borderTopRightRadius: 20,
             borderBottomRightRadius: 20,
             color: "#fff",
@@ -304,7 +304,7 @@ function Login() {
             >
               <Typography
                 sx={{
-                  color: "#3bb19b",
+                  color: "#569f5d",
                   textTransform: "none",
                   textDecoration: "none",
                 }}

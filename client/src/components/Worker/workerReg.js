@@ -128,7 +128,7 @@ function WorkerRegister() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "#f5f5f5",
+          backgroundColor: "#569f5d",
         }}
       >
         <Box
@@ -138,7 +138,7 @@ function WorkerRegister() {
             flexDirection: "column",
             justifyContent: "center",
             width: 250,
-            backgroundColor: "#3bb19b",
+            backgroundColor: "#569f5d",
             borderTopLeftRadius: 20,
             borderBottomLeftRadius: 20,
             color: "#fff",
@@ -159,7 +159,7 @@ function WorkerRegister() {
             >
               <Typography
                 sx={{
-                  color: "#3bb19b",
+                  color: "#569f5d",
                   textTransform: "none",
                   textDecoration: "none",
                 }}
@@ -186,7 +186,7 @@ function WorkerRegister() {
             <Typography
               sx={{
                 fontSize: 30,
-                color: "#3bb19b",
+                color: "#569f5d",
                 fontWeight: "bold",
                 display: "flex",
                 justifyContent: "center",
@@ -275,7 +275,7 @@ function WorkerRegister() {
               variant="contained"
               sx={{
                 mt: 3,
-                backgroundColor: "#3bb19b",
+                backgroundColor: "#569f5d",
                 borderRadius: 4,
                 width: "20ch",
               }}
