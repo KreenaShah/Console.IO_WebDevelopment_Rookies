@@ -11,7 +11,6 @@ const clientIssueSchema = new mongoose.Schema({
 const quotationSchema = new mongoose.Schema({
   quotation:{type:Number},
   worker:{type:String},
-  issue: [{ type: Schema.Types.ObjectId, ref: 'Issue' }]
 })
 
 const ClientIssue = mongoose.model("clientIssue", clientIssueSchema);
