@@ -29,13 +29,17 @@ const theme = createTheme({
   },
 });
 
+const defaultValues={
+  name:"",
+  description:"",
+  location:"",
+  contact:0
+}
+
 const WorkerDet = () => {
   const emailStored = localStorage.getItem("email");
-  {
-    console.log(emailStored);
-  }
 
-  const [workerProfile, setworkerProfile] = useState([]);
+  const [workerProfile, setworkerProfile] = useState(defaultValues);
 
   useEffect(() => {
     getWorkerProfile();
@@ -43,7 +47,7 @@ const WorkerDet = () => {
 
   const getWorkerProfile = async () => {
     try {
-      let response = await axios.get(`${URL}/worker/${emailStored}`);
+      let response = await axios.get(`http://localhost:3000/worker/${emailStored}`);
       console.log(response.data);
       setworkerProfile(response.data);
     } catch (error) {

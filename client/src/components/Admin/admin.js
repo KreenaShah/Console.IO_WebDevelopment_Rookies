@@ -325,6 +325,7 @@ const Admin = () => {
 
           </Grid>
         </Grid>
+        </Grid>
       </div>
     </>
   );

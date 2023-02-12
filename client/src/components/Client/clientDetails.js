@@ -31,7 +31,7 @@ const theme = createTheme({
 
 const ClientDet = () => {
 const emailStored = localStorage.getItem("email");
-{console.log(emailStored);}
+console.log(emailStored);
 
   const [clientProfile, setclientProfile] = useState([]);
 
@@ -41,7 +41,7 @@ const emailStored = localStorage.getItem("email");
 
   const getClientProfile = async () => {
     try {
-      let response = await axios.get(`${URL}/client/${emailStored}`);
+      let response = await axios.get(`http://localhost:3000/client/${emailStored}`);
       console.log(response.data);
       setclientProfile(response.data);
     } catch (error) {
