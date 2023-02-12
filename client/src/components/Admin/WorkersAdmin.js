@@ -25,6 +25,7 @@ import axios from "axios";
 import '../../App.css'
 import { deleteClientProfile , deleteWorkerProfile } from "../api";
 import { StyledTableCell, StyledTableRow } from "./VerificationAdmin";
+import './Components.css'
 
 const URL = "http://localhost:3000";
 const imageURL = "http://localhost:3000/workerDocImages/";
@@ -90,15 +91,17 @@ const Workers = () => {
 
     return ( 
         <>
+        <div className='Workerbg' style={{height:'100vh'}}>
         <Grid container spacing={2}>
           <Grid item xs={2}>
             <Sidebar />
           </Grid>
           <Grid item xs={10}>
             <NavBar />
-            <WorkersComponent/>
+            <workersComponent/>
           </Grid>
         </Grid>
+        </div>
       </>
      );
 }

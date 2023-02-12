@@ -21,7 +21,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Avatar from "@mui/material/Avatar";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
-
+import './Components.css'
 
 // import changePg from './index';
 import {
@@ -55,18 +55,20 @@ const AddAdminComponent = () => {
     const resp = response.responsive;
     const response2 = { responsive: width < 700 };
     const resp2 = response2.responsive;
+    const response3 = { responsive: width < 900 };
+    const resp3 = response3.responsive;
     //
 
     const paperStyle = {
-        padding: "20",
-        height: "70vh",
-        width: resp ? "20rem" : "25rem",
+        // padding: "20",
+        // height: "70vh",
+        width: resp ? "17rem" : "20rem",
         margin: " 1rem ",
-        position: "relative",
-        bottom: resp ? "" : "6rem",
-        top: resp ? "3rem" : "",
-        right: resp ? "-1rem" : "4rem",
-        justifyContent: resp2 ? "center" : "normal",
+        // position: "relative",
+        // bottom: resp ? "" : "6rem",
+        // top: resp ? "3rem" : "",
+        right: resp ? "5rem" : "0rem",
+        // justifyContent: resp2 ? "center" : "normal",
     };
     // backgroundImage: 'linear-gradient(227deg, #40c057 5%, #4dabf7 95%)'
     const avatarStyle = {
@@ -235,7 +237,7 @@ const AddAdminComponent = () => {
     }
     return (
         <>
-        <div className="clientBg" style={{height: "105vh"}}>
+        <div className="clientBg AddAdminbg" style={{height:resp3 ? '140vh': '100vh'}}>
             <Grid container spacing={2}>
                 <Grid item xs={2}>
                     <Sidebar />
@@ -243,10 +245,10 @@ const AddAdminComponent = () => {
                 <Grid item xs={10}>
                     <NavBar />
                     <Grid container spacing={2}>
-                        <Grid item xs={6}>
+                        <Grid item sm={12} xs={6}>
                             <AddAdminForm />
                         </Grid>
-                        <Grid item xs={6}>
+                        <Grid item sm={12} xs={6}>
                             <PresentAdmins />
                         </Grid>
                     </Grid>

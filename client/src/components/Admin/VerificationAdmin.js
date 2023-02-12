@@ -19,6 +19,7 @@ import { createTheme } from '@mui/material/styles';
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import CheckIcon from "@mui/icons-material/Check";
+import './Components.css'
 
 export const mytheme = createTheme({
   status: {
@@ -162,6 +163,7 @@ const VerificationAdmin = () => {
 
   return (
     <>
+    <div className='Verificationbg' style={{height:'100vh'}}>
       <Grid container spacing={2}>
         <Grid item xs={2}>
           <Sidebar />
@@ -228,6 +230,7 @@ const VerificationAdmin = () => {
           </TableContainer>
         </Grid>
       </Grid>
+      </div>
     </>
   );
 };
