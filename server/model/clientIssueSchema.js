@@ -9,6 +9,7 @@ const clientIssueSchema = new mongoose.Schema({
 });
 
 const quotationSchema = new mongoose.Schema({
+  issueId:{type:String},
   quotation:{type:Number},
   workerEmail:{type:String},
 })

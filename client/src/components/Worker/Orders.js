@@ -57,6 +57,7 @@ const WorkerOrders = () => {
 
   // for responsiveness
   const [width, setWindowWidth] = useState(0);
+  const [data, setData] = useState({});
 
   useEffect(() => {
     updateDimensions();
@@ -72,6 +73,12 @@ const WorkerOrders = () => {
   const response = { responsive: width < 670 };
   const resp = response.responsive;
   //
+
+  const handleChange = (e) => {
+    console.log(e.target.name, e.target.value);
+    setData({ ...data, [e.target.name]: e.target.value });
+    console.log(data);
+  }
 
   // const [page, setPage] = React.useState(0);
   // const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -96,89 +103,138 @@ const WorkerOrders = () => {
     // await deleteClientIssue(id);
     // getAllClientIssues();
   };
+  const updateQuotation = async (id) => {
+    var email = localStorage.getItem("email");
+    var quotation = data.quotation;
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("id", id);
+    urlencoded.append("quotation", quotation);
+    urlencoded.append("email", email);
+    // urlencoded.append("password", user.password);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow'
+    };
+
+    fetch("http://localhost:3000/clientIssue/quotation", requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        console.log(result)
+        getQuotation(id);
+      })
+      .catch(err => console.log('error', err));
+  }
+
+
+  const getQuotation = async (id) => {
+
+    var config = {
+      method: 'get',
+      maxBodyLength: Infinity,
+      url: `localhost:3000/clientIssue/getQuotation/${id}`,
+      headers: {}
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   return (
     <>
-    <div className="clientBg" style={{height: "105vh"}}>
-      <Grid container spacing={2}>
-        <Grid item xs={2}>
-          <Sidebar />
-        </Grid>
-        <Grid item xs={10}>
-          <NavBar />
+      <div className="clientBg" style={{ height: "105vh" }}>
+        <Grid container spacing={2}>
+          <Grid item xs={2}>
+            <Sidebar />
+          </Grid>
+          <Grid item xs={10}>
+            <NavBar />
 
-          <TableContainer
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: 7,
-              marginLeft: 4.2,
-              width: 1070,
-            }}
-            component={Paper}
-          >
-            <Table aria-label="customized table">
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell>Issue</StyledTableCell>
-                  <StyledTableCell>Category</StyledTableCell>
-                  <StyledTableCell>Negotiated</StyledTableCell>
-                  <StyledTableCell>Accept</StyledTableCell>
-                  <StyledTableCell>Decline</StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {clientIssues.map((clientIssue) => (
-                  <StyledTableRow key={clientIssue._id}>
-                    <StyledTableCell component="th" scope="row">
-                      {clientIssue.issue}
-                    </StyledTableCell>
-                    <StyledTableCell component="th" scope="row">
-                      {clientIssue.category}
-                    </StyledTableCell>
-                    <StyledTableCell sx={{display:"flex"}}>
-                      <TextField type="number"
-                        id="outlined-basic"
-                        label="Quotation"
-                        variant="outlined"
-                      />
-                      <Button
-                        sx={{ marginLeft: 1,backgroundColor:"rgba(0,0,0,0.2)" }}
-                        variant="contained"
-                        onClick={() => deleteClientIssues(clientIssue._id)}
-                      >
-                        <CheckBoxIcon />
-                      </Button>
-                      {/* {clientIssue.negotiated} */}
-                    </StyledTableCell>
-                    <StyledTableCell>
-                      <Button
-                        sx={{ marginLeft: 0, backgroundColor: "green" }}
-                        variant="contained"
-                        onClick={() => deleteClientIssues(clientIssue._id)}
-                      >
-                        <CheckBoxIcon />
-                        Accept
-                      </Button>
-                    </StyledTableCell>
-                    <StyledTableCell>
-                      <Button
-                        sx={{ marginLeft: 0, backgroundColor: "#ff0000" }}
-                        variant="contained"
-                        onClick={() => deleteClientIssues(clientIssue._id)}
-                      >
-                        <DeleteIcon />
-                        Reject
-                      </Button>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+            <TableContainer
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                marginTop: 7,
+                marginLeft: 4.2,
+                width: 1070,
+              }}
+              component={Paper}
+            >
+              <Table aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>Issue</StyledTableCell>
+                    <StyledTableCell>Category</StyledTableCell>
+                    <StyledTableCell>Negotiated</StyledTableCell>
+                    <StyledTableCell>Accept</StyledTableCell>
+                    <StyledTableCell>Decline</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+
+                  {clientIssues.map((clientIssue) => (
+                    <StyledTableRow key={clientIssue._id}>
+                      <StyledTableCell component="th" scope="row">
+                        {clientIssue.issue}
+                      </StyledTableCell>
+                      <StyledTableCell component="th" scope="row">
+                        {clientIssue.category}
+                      </StyledTableCell>
+                      <StyledTableCell sx={{ display: "flex" }}>
+                        <TextField type="number"
+                          id="outlined-basic"
+                          label="Quotation"
+                          name="quotation"
+                          variant="outlined"
+                          onChange={handleChange}
+                        />
+                        <Button
+                          sx={{ marginLeft: 1, backgroundColor: "rgba(0,0,0,0.2)" }}
+                          variant="contained"
+                          onClick={() => updateQuotation(clientIssue._id)}
+                        >
+                          <CheckBoxIcon />
+                        </Button>
+                        {/* {clientIssue.negotiated} */}
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <Button
+                          sx={{ marginLeft: 0, backgroundColor: "green" }}
+                          variant="contained"
+                          onClick={() => deleteClientIssues(clientIssue._id)}
+                        >
+                          <CheckBoxIcon />
+                          Accept
+                        </Button>
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <Button
+                          sx={{ marginLeft: 0, backgroundColor: "#ff0000" }}
+                          variant="contained"
+                          onClick={() => deleteClientIssues(clientIssue._id)}
+                        >
+                          <DeleteIcon />
+                          Reject
+                        </Button>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Grid>
         </Grid>
-      </Grid>
       </div>
     </>
   );

@@ -101,7 +101,7 @@ const CQUery = () => {
       redirect: 'follow'
     };
 
-    fetch("http://localhost:3000/client/addClientIssue", requestOptions)
+    fetch("http://localhost:3000/clientIssue/addClientIssue", requestOptions)
       .then(response => response.json())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
@@ -151,7 +151,7 @@ const CQUery = () => {
                 justifyContent: "center",
                 alignItems: "center",
               }}
-            >
+            > 
               Raise Query
             </Typography>
             {/* <p className="Pwtext">Enter the email adress associated with your account and we'll send you a link to reset your password.</p> */}

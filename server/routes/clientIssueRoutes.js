@@ -4,6 +4,9 @@ const {
     getClientIssue,
     editClientIssue,
     deleteClientIssue,
+    getSpecificClientIssues,
+    updateQuotation,
+    getQuotation
   } = require("../controller/clientIssueController");
 //   const { upload } = require("../middlewares/multer");
   const express = require("express");
@@ -14,6 +17,9 @@ const {
   router.get("/:id", getClientIssue);
   router.put("/:id", editClientIssue);
   router.delete("/:id", deleteClientIssue);
+  router.get('/specificClientIssues/:email',getSpecificClientIssues);
+  router.post('/quotation',updateQuotation);
+  router.get('/getQuotation/:id',getQuotation);
   
   // router.get("/all", (req, res) => {
   //   console.log("Hey!");
