@@ -54,10 +54,12 @@ const CQUery = () => {
   };
 
   const RuleOptions = [
-    { label: "Option 1", value: "option_1" },
-    { label: "Option 2", value: "option_2" },
-    { label: "Option 3", value: "option_3" },
-    { label: "Option 4", value: "option_4" },
+    { label: "Cleaning", value: "Cleaning" },
+    { label: "Repair", value: "Repair" },
+    { label: "Cooking", value: "Cooking" },
+    { label: "Barber", value: "Barber" },
+    { label: "Electrician", value: "Electrician" },
+    { label: "Homecare", value: "Homecare" },
   ]
 
   const handleChange = (e) => {
