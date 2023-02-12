@@ -1,5 +1,5 @@
 import Navbar from "../Navbar";
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Box, TextField , Typography,Button } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from 'axios';
@@ -30,6 +30,26 @@ const theme = createTheme({
 });
 
 const WorkerDet = () => {
+  const emailStored = localStorage.getItem("email");
+  {
+    console.log(emailStored);
+  }
+
+  const [workerProfile, setworkerProfile] = useState([]);
+
+  useEffect(() => {
+    getWorkerProfile();
+  }, []);
+
+  const getWorkerProfile = async () => {
+    try {
+      let response = await axios.get(`${URL}/worker/${emailStored}`);
+      console.log(response.data);
+      setworkerProfile(response.data);
+    } catch (error) {
+      console.log("Error while calling getUsers API");
+    }
+  };
   return (
     <div>
       <form className="inputBox">
@@ -59,10 +79,10 @@ const WorkerDet = () => {
                   borderBottomLeftRadius: 20,
                 }}
               >
-                <p className="Details">Name: </p>
-                <p className="Details">Description: </p>
-                <p className="Details">Location: </p>
-                <p className="Details">Contact: </p>
+                <p className="Details">Name: {workerProfile.name}</p>
+                <p className="Details">Description: {workerProfile.description}</p>
+                <p className="Details">Location: {workerProfile.location}</p>
+                <p className="Details">Contact: {workerProfile.contact}</p>
               </Box>
               <Box
                 className="box"

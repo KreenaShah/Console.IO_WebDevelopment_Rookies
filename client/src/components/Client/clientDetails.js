@@ -1,5 +1,5 @@
 import Navbar from "../Navbar";
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import { Box, TextField , Typography,Button } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from 'axios';
@@ -30,56 +30,81 @@ const theme = createTheme({
 });
 
 const ClientDet = () => {
+const emailStored = localStorage.getItem("email");
+{console.log(emailStored);}
+
+  const [clientProfile, setclientProfile] = useState([]);
+
+  useEffect(() => {
+    getClientProfile();
+  }, []);
+
+  const getClientProfile = async () => {
+    try {
+      let response = await axios.get(`${URL}/client/${emailStored}`);
+      console.log(response.data);
+      setclientProfile(response.data);
+    } catch (error) {
+      console.log("Error while calling getUsers API");
+    }
+  };
 
   return (
     <div>
       <form className="inputBox">
         <ThemeProvider theme={theme}>
-            <Typography
-              color="#3bb19b"
+          <Typography
+            color="#3bb19b"
+            sx={{
+              fontSize: 40,
+              fontWeight: "bold",
+              paddingTop: 8,
+              marginBottom: 2.5,
+              textAlign: "center",
+            }}
+          >
+            Client's Details
+          </Typography>
+          <Box sx={{ display: "flex" }}>
+            <Box
+              className="box"
               sx={{
-                fontSize: 40,
-                fontWeight: "bold",
-                paddingTop: 8,
-                marginBottom: 2.5,
-                textAlign: "center",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                width: 500,
+                Height: 100,
+                backgroundColor: "#3bb19b",
+                borderTopLeftRadius: 20,
+                borderBottomLeftRadius: 20,
               }}
             >
-                Client's Details
-            </Typography>
-            <Box sx={{display: 'flex'}}>
-              <Box
-                className="box"
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  width: 500,
-                  backgroundColor: "#3bb19b",
-                  borderTopLeftRadius: 20,
-                  borderBottomLeftRadius: 20,
-                }}
+              <p className="Details">Name: {clientProfile.name} </p>
+              <p className="Details">Address: {clientProfile.address} </p>
+              <p className="Details">Contact: {clientProfile.contact} </p>
+              <p className="Details">Email: {clientProfile.email} </p>
+              <Button
+                sx={{ marginLeft: 3 ,color:"black",backgroundColor:"white"}}
+                variant="contained"
               >
-                <p className="Details">Name: </p>
-                <p className="Details">Address: </p>
-                <p className="Details">Contact: </p>
-                <p className="Details">Email: </p>
-              </Box>
-              <Box
-                className="box"
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  width: 400,
-                  backgroundColor: "#fff",
-                  borderTopRightRadius: 20,
-                  borderBottomRightRadius: 20,
-                }}
-              >
-                <img className="workerImg"/>
-              </Box>
+                Accept
+              </Button>
             </Box>
+            <Box
+              className="box"
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                width: 400,
+                backgroundColor: "#fff",
+                borderTopRightRadius: 20,
+                borderBottomRightRadius: 20,
+              }}
+            >
+              <img className="workerImg" />
+            </Box>
+          </Box>
         </ThemeProvider>
       </form>
     </div>

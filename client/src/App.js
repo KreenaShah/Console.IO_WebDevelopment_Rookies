@@ -30,7 +30,9 @@ function App() {
   const isVerified=localStorage.getItem("isVerified");
   return (
     <div className="App">
-      <Routes>
+      {/* <Admin /> */}
+      <ClientDetails/>
+      {/* <Routes>
         <Route path="/" element={<LandingComponent />}></Route>
         <Route path="/register/worker" element={<WorkerReg />}></Route>
         <Route path="/register/client" element={<ClientRegister />}></Route>
@@ -43,12 +45,12 @@ function App() {
         {user && <Route path="/worker/profile" element={<WorkerDetails />}></Route>}
         {user && <Route path="/worker/profile/edit" element={<WorkerProf />}></Route>}
         {user && isVerified && <Route path="/worker/orders" element={<OrdersTable />}></Route>}
-        {user && isVerified && <Route path="/worker/notifications" element={<WorkerOrders />}></Route>} {/* Left To Do */}
+        {user && isVerified && <Route path="/worker/notifications" element={<WorkerOrders />}></Route>} Left To Do
 
         {user && <Route path="/client/profile" element={<ClientDetails />}></Route>}
         {user && <Route path="/client/profile/edit" element={<ClientProfile />}></Route>}
         {user && <Route path="/client/rquery" element={<ClientQuery />}></Route>}
-        {user && <Route path="/client/notifications" element={<ClientOrders />}></Route>} {/* Left To Do */}
+        {user && <Route path="/client/notifications" element={<ClientOrders />}></Route>} Left To Do
 
         {user && <Route path="/admin/dashboard" element={<Admin />}></Route>}
         {user && <Route path="/admin/clients" element={<Clients />}></Route>}
@@ -57,7 +59,7 @@ function App() {
         {user && <Route path="/admin/addnewadmins" element={<AddAdminComponent />}></Route>}
         
         <Route path='/map' element={<MapWithRouting />}></Route>
-      </Routes>
+      </Routes> */}
     </div>
   );
 }

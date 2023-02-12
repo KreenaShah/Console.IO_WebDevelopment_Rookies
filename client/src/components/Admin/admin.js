@@ -23,11 +23,57 @@ import {
   LinearScale,
   PointElement,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import Chart from "chart.js/auto";
+import { Line, Bar } from "react-chartjs-2";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"></script>
+
+const labels = ["January", "February", "March", "April", "May", "June"];
+
+const data = {
+  labels: labels,
+  datasets: [
+    {
+      label: "My First dataset",
+      backgroundColor: "rgb(255, 99, 132)",
+      borderColor: "rgb(255, 99, 132)",
+      data: [0, 10, 5, 2, 20, 30, 45],
+    },
+  ],
+};
+
+const LineChart = () => {
+  return (
+    <div>
+      <Box sx={{display:"flex",justifyContent:"space-around",alignItems:"center",marginRight:"9"}}>
+        <Paper
+          elevation={3}
+          style={{
+            position: "relative",
+            padding: "0.5rem",
+            maxWidth: 350,
+            borderRadius: "6px",
+          }}
+        >
+          <Line data={data} />
+        </Paper>
+        <Paper
+          elevation={3}
+          style={{
+            position: "relative",
+            padding: "0.5rem",
+            maxWidth: 350,
+            borderRadius: "6px",
+          }}
+        >
+          <Bar data={data} />
+        </Paper>
+      </Box>
+    </div>
+  );
+};
 
 const Admin = () => {
   // for responsiveness
@@ -48,7 +94,7 @@ const Admin = () => {
   const resp = response.responsive;
   //
 
-  const userDataStyle = {width:'8rem', height:'7.5rem', margin:'1rem', padding:'1rem', borderRadius: "6px" }
+  const userDataStyle = {width:'4.2rem', height:'4.2rem', margin:'1rem', padding:'1rem', borderRadius: "6px" }
 
 
   // const [data, setData] = useState({});
@@ -117,13 +163,13 @@ const Admin = () => {
 
   const TopServices = () => (
     <Paper elevation={3} style={{position: "relative", left: "8%", padding:'0.5rem',maxWidth: 300 , borderRadius: "6px" }}>
-    <h2 style={{ textAlign:'left', paddingLeft:'1rem', paddingTop:'1rem' }}>Top Services</h2>
+    <h2 style={{ textAlign:'left', paddingLeft:'1rem' }}>Top Services</h2>
     <List
       sx={{
         width: "90%",
         maxWidth: 300,
         bgcolor: "background.paper",
-        height:"230px",
+        height:"150px",
         overflowY:'scroll'
       }}
     >
@@ -159,14 +205,14 @@ const Admin = () => {
   );
 
   const RecentOrders = () => (
-    <Paper elevation={3} style={{position: "relative", padding:'0.5rem' ,maxWidth: 350, right:'2rem', borderRadius: "6px" }}>
-    <h2 style={{ textAlign:'left', paddingLeft:'1rem', paddingTop:'1rem' }}>Recent Orders</h2>
+    <Paper elevation={3} style={{position: "relative", padding:'0.5rem' ,maxWidth: 350, right:'0.8rem', borderRadius: "6px" }}>
+    <h2 style={{ textAlign:'left', paddingLeft:'1rem' }}>Recent Orders</h2>
     <List
       sx={{
         width: "93%",
         maxWidth: 355,
         bgcolor: "background.paper",
-        height:"230px",
+        height:"150px",
         overflowY:'scroll'
       }}
     >
@@ -175,14 +221,14 @@ const Admin = () => {
         <Avatar sx={{ bgcolor: '#4C7972' }}>S</Avatar>
         </ListItemAvatar>
         <ListItemText primary="Sophie May" secondary="Haircut" style={{marginRight:'5px'}}/>
-        <p >$64672</p>
+        <p >$6462</p>
       </ListItem>
       <ListItem>
         <ListItemAvatar>
         <Avatar sx={{ bgcolor: '#4C7972' }}>K</Avatar>
         </ListItemAvatar>
         <ListItemText primary="Kiara Thompson" secondary="Haircut" />
-        <p >$43603</p>
+        <p >$4363</p>
       </ListItem>
       <ListItem>
         <ListItemAvatar>
@@ -197,63 +243,104 @@ const Admin = () => {
 
   const WebsiteUserData = () => (
     <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-    <Paper elevation={3} style={userDataStyle}>
-      <Grid xs={6} >
-        <PersonIcon style={{position:'relative', right:'1rem'}}/>
-        <h1 style={{marginTop:'1em', marginBottom:'0'}}>180</h1>
-        <span>Clients</span>
-        <p style={{color:'#4caf50', margin:'0', position:'relative', left:'5rem', bottom:'1.2rem'}}>50%</p>
-      </Grid>
+      <Paper elevation={3} style={userDataStyle}>
+        <Grid xs={6}>
+          <PersonIcon style={{ position: "relative", right: "1rem" }} />
+          {/* <span>Clients</span> */}
+          <h2>180+</h2>
+
+          {/* <p style={{color:'#4caf50', margin:'0', position:'relative', left:'5rem', bottom:'1.2rem'}}>50%</p> */}
+        </Grid>
       </Paper>
-    <Paper elevation={3} style={userDataStyle}>
-      <Grid xs={6}>
-        <EngineeringIcon style={{position:'relative', right:'1rem'}}/>
-        <h1 style={{marginTop:'1em', marginBottom:'0'}}>1200</h1>
-        <span>Workers</span>
-        <p style={{color:'#4caf50', margin:'0', position:'relative', left:'5rem', bottom:'1.2rem'}}>70%</p>
-      </Grid>
+      <Paper elevation={3} style={userDataStyle}>
+        <Grid xs={6}>
+          <EngineeringIcon style={{ position: "relative", right: "1rem" }} />
+          <h1 style={{ marginTop: "1em", marginBottom: "0" }}>1200</h1>
+          <span>Workers</span>
+          <p
+            style={{
+              color: "#4caf50",
+              margin: "0",
+              position: "relative",
+              left: "5rem",
+              bottom: "1.2rem",
+            }}
+          >
+            70%
+          </p>
+        </Grid>
       </Paper>
-    <Paper elevation={3} style={userDataStyle}>
-      <Grid xs={6}>
-        <ShoppingCartIcon style={{position:'relative', right:'1rem'}}/>
-        <h1 style={{marginTop:'1em', marginBottom:'0'}}>150</h1>
-        <span>Deals</span>
-        <p style={{color:'#4caf50', margin:'0', position:'relative', left:'5rem', bottom:'1.2rem'}}>30%</p>
-      </Grid>
+      <Paper elevation={3} style={userDataStyle}>
+        <Grid xs={6}>
+          <ShoppingCartIcon style={{ position: "relative", right: "1rem" }} />
+          <h1 style={{ marginTop: "1em", marginBottom: "0" }}>150</h1>
+          <span>Deals</span>
+          <p
+            style={{
+              color: "#4caf50",
+              margin: "0",
+              position: "relative",
+              left: "5rem",
+              bottom: "1.2rem",
+            }}
+          >
+            30%
+          </p>
+        </Grid>
       </Paper>
-    <Paper elevation={3} style={userDataStyle}>
-      <Grid xs={6}>
-        <PersonIcon style={{position:'relative', right:'1rem'}}/>
-        <h1 style={{marginTop:'1em', marginBottom:'0'}}>1800</h1>
-        <span>Visitors</span>
-        <p style={{color:'#4caf50', margin:'0', position:'relative', left:'5rem', bottom:'1.2rem'}}>20%</p>
-      </Grid>
+      <Paper elevation={3} style={userDataStyle}>
+        <Grid xs={6}>
+          <PersonIcon style={{ position: "relative", right: "1rem" }} />
+          <h1 style={{ marginTop: "1em", marginBottom: "0" }}>1800</h1>
+          <span>Visitors</span>
+          <p
+            style={{
+              color: "#4caf50",
+              margin: "0",
+              position: "relative",
+              left: "5rem",
+              bottom: "1.2rem",
+            }}
+          >
+            20%
+          </p>
+        </Grid>
       </Paper>
     </Grid>
-  )
+  );
 
   return (
     <>
-    <div className="clientBg" style={{height: "105vh"}}>
-      <Grid container spacing={2}>
-        <Grid item xs={2}>
-          <Sidebar />
-        </Grid>
-        <Grid item xs={10}>
-          <NavBar />
-          <Grid container spacing={2} style={{position: "relative", top: "20%"}}>
-            <Grid item xs={4}>
-              <TopServices />
+      <div className="clientBg" style={{ height: "140vh" }}>
+        <Grid container spacing={2}>
+          <Grid item xs={2}>
+            <Sidebar />
+          </Grid>
+          <Grid item xs={10}>
+
+            <NavBar />
+
+            <Grid
+              container
+              spacing={2}
+              style={{ position: "relative", top: "20%" }}
+            >
+              <Grid item xs={4}>
+                <TopServices />
+              </Grid>
+              <Grid item xs={4}>
+                <RecentOrders />
+              </Grid>
+              <Grid item xs={4}>
+                <WebsiteUserData />
+              </Grid>
+              <Grid>
+                <LineChart />
+              </Grid>
             </Grid>
-            <Grid item xs={4}>
-              <RecentOrders/>
-            </Grid>
-            <Grid item xs={4}>
-              <WebsiteUserData/>
-            </Grid>
+
           </Grid>
         </Grid>
-      </Grid>
       </div>
     </>
   );

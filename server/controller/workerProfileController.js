@@ -109,7 +109,7 @@ const getWorkerProfile = async (request, response) => {
   try {
     // console.log(request.params.id);
     const workerProfile = await WorkerProfile.findOne({
-      _id: request.params.id,
+      email: request.params.email,
     });
     // const user = await User.findById(request.params.id);
     response.status(200).json(workerProfile);

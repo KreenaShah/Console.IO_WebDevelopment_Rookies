@@ -58,9 +58,9 @@ const getClientProfiles = async (request, response) => {
 
 const getClientProfile = async (request, response) => {
   try {
-    // console.log(request.params.id);
+    // console.log(request.params.email);
     const clientProfile = await ClientProfile.findOne({
-      _id: request.params.id,
+      email: request.params.email,
     });
     // const user = await User.findById(request.params.id);
     response.status(200).json(clientProfile);
