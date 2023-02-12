@@ -18,6 +18,7 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import axios from "axios";
 import { deleteClientProfile } from "../api";
 import Avatar from "@mui/material/Avatar";
+import './Components.css'
 
 import { StyledTableCell , StyledTableRow} from "./VerificationAdmin";
 
@@ -109,7 +110,7 @@ const resp = response.responsive;
 
     return ( 
         <>
-        <div className="clientBg" style={{height: "105vh"}}>
+        <div className="clientBg Clientbg" style={{height: "100vh"}}>
         <Grid container spacing={2}>
           <Grid item xs={2}>
             <Sidebar />

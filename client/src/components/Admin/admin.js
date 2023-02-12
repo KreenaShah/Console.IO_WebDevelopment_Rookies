@@ -26,7 +26,7 @@ import {
 import Chart from "chart.js/auto";
 import { Line, Bar } from "react-chartjs-2";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
-
+import './Components.css'
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.min.js"></script>
 
@@ -94,7 +94,9 @@ const Admin = () => {
   const resp = response.responsive;
   //
 
-  const userDataStyle = {width:'4.2rem', height:'4.2rem', margin:'1rem', padding:'1rem', borderRadius: "6px" }
+  const userDataStyle = {width:'8rem', height:'7.5rem', margin:'1rem', padding:'1rem', borderRadius: "6px" 
+  ,position:'relative',left:resp? '5rem':'0rem'}
+  
 
 
   // const [data, setData] = useState({});
@@ -162,8 +164,9 @@ const Admin = () => {
   // );
 
   const TopServices = () => (
-    <Paper elevation={3} style={{position: "relative", left: "8%", padding:'0.5rem',maxWidth: 300 , borderRadius: "6px" }}>
-    <h2 style={{ textAlign:'left', paddingLeft:'1rem' }}>Top Services</h2>
+    <Paper elevation={3} style={{position: "relative", left: resp? '22%' : "8%", padding:'0.5rem'
+    ,maxWidth: 300 , borderRadius: "6px" }} className='WebsiteUserData'>
+    <h2 style={{ textAlign:'left', paddingLeft:'1rem', paddingTop:'1rem' }}>Top Services</h2>
     <List
       sx={{
         width: "90%",
@@ -205,8 +208,9 @@ const Admin = () => {
   );
 
   const RecentOrders = () => (
-    <Paper elevation={3} style={{position: "relative", padding:'0.5rem' ,maxWidth: 350, right:'0.8rem', borderRadius: "6px" }}>
-    <h2 style={{ textAlign:'left', paddingLeft:'1rem' }}>Recent Orders</h2>
+    <Paper elevation={3} style={{position: "relative", padding:'0.5rem' ,maxWidth: 350,
+    right:resp?'0rem':'2rem', borderRadius: "6px" }} className='WebsiteUserData'>
+    <h2 style={{ textAlign:'left', paddingLeft:'1rem', paddingTop:'1rem' }}>Recent Orders</h2>
     <List
       sx={{
         width: "93%",
@@ -270,26 +274,16 @@ const Admin = () => {
           </p>
         </Grid>
       </Paper>
-      <Paper elevation={3} style={userDataStyle}>
-        <Grid xs={6}>
-          <ShoppingCartIcon style={{ position: "relative", right: "1rem" }} />
-          <h1 style={{ marginTop: "1em", marginBottom: "0" }}>150</h1>
-          <span>Deals</span>
-          <p
-            style={{
-              color: "#4caf50",
-              margin: "0",
-              position: "relative",
-              left: "5rem",
-              bottom: "1.2rem",
-            }}
-          >
-            30%
-          </p>
-        </Grid>
+    <Paper elevation={3} style={userDataStyle}>
+      <Grid xs={12} sm={6} >
+        <ShoppingCartIcon style={{position:'relative', right:'1rem'}}/>
+        <h1 style={{marginTop:'1em', marginBottom:'0'}}>150</h1>
+        <span>Deals</span>
+        <p style={{color:'#4caf50', margin:'0', position:'relative', left:'5rem', bottom:'1.2rem'}}>30%</p>
+      </Grid>
       </Paper>
       <Paper elevation={3} style={userDataStyle}>
-        <Grid xs={6}>
+        <Grid xs={12} sm={6} >
           <PersonIcon style={{ position: "relative", right: "1rem" }} />
           <h1 style={{ marginTop: "1em", marginBottom: "0" }}>1800</h1>
           <span>Visitors</span>
@@ -311,32 +305,22 @@ const Admin = () => {
 
   return (
     <>
-      <div className="clientBg" style={{ height: "140vh" }}>
-        <Grid container spacing={2}>
-          <Grid item xs={2}>
-            <Sidebar />
-          </Grid>
-          <Grid item xs={10}>
-
-            <NavBar />
-
-            <Grid
-              container
-              spacing={2}
-              style={{ position: "relative", top: "20%" }}
-            >
-              <Grid item xs={4}>
-                <TopServices />
-              </Grid>
-              <Grid item xs={4}>
-                <RecentOrders />
-              </Grid>
-              <Grid item xs={4}>
-                <WebsiteUserData />
-              </Grid>
-              <Grid>
-                <LineChart />
-              </Grid>
+    <div className="clientBg Adminbg" style={{height: "100vh"}}>
+      <Grid container spacing={2}>
+        <Grid item xs={2}>
+          <Sidebar />
+        </Grid>
+        <Grid item xs={10}>
+          <NavBar />
+          <Grid container spacing={2} style={{position: "relative", top: "20%"}}>
+            <Grid item lg={4} sm={6} xs={12}>
+              <TopServices />
+            </Grid>
+            <Grid item lg={4} sm={6} xs={12}>
+              <RecentOrders/>
+            </Grid>
+            <Grid item lg={4} sm={6} xs={12}>
+              <WebsiteUserData/>
             </Grid>
 
           </Grid>

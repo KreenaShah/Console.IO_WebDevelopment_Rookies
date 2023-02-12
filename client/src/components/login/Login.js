@@ -81,12 +81,14 @@ function Login() {
       .then(response => {
         localStorage.removeItem("secret_token");
         localStorage.removeItem("isVerified");
+        localStorage.removeItem("email");
         return response.json();
       })
       .then(result => {
         console.log(result);
         localStorage.setItem("secret_token", result.token);
         localStorage.setItem("isVerified", result.isVerified);
+        localStorage.setItem("email",user.email);
         return result;
       })
       .then(r => {

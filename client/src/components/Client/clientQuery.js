@@ -54,10 +54,12 @@ const CQUery = () => {
   };
 
   const RuleOptions = [
-    { label: "Option 1", value: "option_1" },
-    { label: "Option 2", value: "option_2" },
-    { label: "Option 3", value: "option_3" },
-    { label: "Option 4", value: "option_4" },
+    { label: "Cleaning", value: "Cleaning" },
+    { label: "Repair", value: "Repair" },
+    { label: "Cooking", value: "Cooking" },
+    { label: "Barber", value: "Barber" },
+    { label: "Electrician", value: "Electrician" },
+    { label: "Homecare", value: "Homecare" },
   ]
 
   const handleChange = (e) => {
@@ -101,7 +103,7 @@ const CQUery = () => {
       redirect: 'follow'
     };
 
-    fetch("http://localhost:3000/client/addClientIssue", requestOptions)
+    fetch("http://localhost:3000/clientIssue/addClientIssue", requestOptions)
       .then(response => response.json())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
@@ -151,7 +153,7 @@ const CQUery = () => {
                 justifyContent: "center",
                 alignItems: "center",
               }}
-            >
+            > 
               Raise Query
             </Typography>
             {/* <p className="Pwtext">Enter the email adress associated with your account and we'll send you a link to reset your password.</p> */}

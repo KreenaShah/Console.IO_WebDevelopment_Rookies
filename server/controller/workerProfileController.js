@@ -133,6 +133,7 @@ const editWorkerProfile = async (request, response) => {
 
 const deleteWorkerProfile = async (request, response) => {
   try {
+    await rejectWorkerProfile(request,response);
     await WorkerProfile.deleteOne({ _id: request.params.id });
     response.status(201).json(editWorkerProfile);
   } catch (error) {
@@ -151,7 +152,7 @@ const verifyWorkerProfile = async (request, response) => {
     user.isVerified = "true";
     user.save();
 
-    //EMIAL BHEJNA HAI
+    //EMAIL BHEJNA HAI
 
     response.status(200).json(user);
   } catch (error) {
