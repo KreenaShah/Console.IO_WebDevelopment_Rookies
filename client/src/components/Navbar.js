@@ -80,7 +80,7 @@ function Navbar() {
             component={Link}
             to={`/home`}
           >
-            HappyTravels
+            WorkConnect
           </Typography>
           <Search>
             <SearchIconWrapper>

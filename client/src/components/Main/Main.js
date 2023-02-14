@@ -64,7 +64,7 @@ function Main() {
             backgroundColor: "#3bb19b",
           }}
         >
-          <Typography>HappyTravels</Typography>
+          <Typography>WorkConnect</Typography>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

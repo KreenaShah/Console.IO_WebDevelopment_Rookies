@@ -30,9 +30,7 @@ function App() {
   const isVerified=localStorage.getItem("isVerified");
   return (
     <div className="App">
-      {/* <Admin /> */}
-      <ClientDetails/>
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<LandingComponent />}></Route>
         <Route path="/register/worker" element={<WorkerReg />}></Route>
         <Route path="/register/client" element={<ClientRegister />}></Route>
@@ -59,7 +57,7 @@ function App() {
         {user && <Route path="/admin/addnewadmins" element={<AddAdminComponent />}></Route>}
         
         <Route path='/map' element={<MapWithRouting />}></Route>
-      </Routes> */}
+      </Routes>
     </div>
   );
 }

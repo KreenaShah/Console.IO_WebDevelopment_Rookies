@@ -285,6 +285,7 @@ function ClientRegister() {
             </Button>
           </form>
         </Box>
+        <div style={{position:"absolute",bottom:"50px"}}>Image by <a href="https://www.freepik.com/free-vector/flat-geometric-background_14121222.htm#query=minimal%20geometric&position=27&from_view=keyword&track=ais">Freepik</a></div>
       </Box>
     </ThemeProvider>
   );

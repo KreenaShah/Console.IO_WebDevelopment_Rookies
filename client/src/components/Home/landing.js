@@ -138,76 +138,76 @@ const LandingComponent = () => {
   };
 
 
-  const categoryImgStyle = {width:'8rem', height:'7.5rem', margin:'1rem', padding:'1rem', borderRadius: "10px" }
+  const categoryImgStyle = { width: '8rem', height: '7.5rem', margin: '1rem', padding: '1rem', borderRadius: "10px" }
 
   const CategoryComponent = () => (
     <div
-      style={{ width: "60%", position: "relative", left: "20%", top: "30%"}}
+      style={{ width: "60%", position: "relative", left: "20%", top: "30%" }}
     >
       <Grid container spacing={0}>
-      <Grid xs={3} >
-      <Paper elevation={5} style={categoryImgStyle}>
-      <div >
-            <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/categories/category_v2/category_6b1f5250.png" alt="Appliance-repair" itemScope itemProp="image"
-            style={{objectFit:'cover', width:'2.5rem', height:'2.5rem'}}/>
-          </div>
-        <h3 >Cleaning and Pest Control</h3>
-      </Paper>
-      </Grid>
-      <Grid xs={3} >
-      <Paper elevation={5} style={categoryImgStyle}>
-      <div >
-            <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/categories/category_v2/category_72d18950.png" alt="Appliance-repair" itemScope itemProp="image"
-            style={{objectFit:'cover', width:'2.5rem', height:'2.5rem'}}/>
-          </div>
-        <h3 >Appliance Repair</h3>
-      </Paper>
-      </Grid>
-      <Grid xs={3} >
-      <Paper elevation={5} style={categoryImgStyle}>
-      <div >
-            <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1631679515206-a69389.png" alt="Appliance-repair" itemScope itemProp="image"
-            style={{objectFit:'cover', width:'2.5rem', height:'2.5rem'}}/>
-          </div>
-        <h3 >Home Painting</h3>
-      </Paper>
-      </Grid>
-      <Grid xs={3} >
-      <Paper elevation={5} style={categoryImgStyle}>
-      <div >
-            <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1609757629780-2b2187.png" alt="Appliance-repair" itemScope itemProp="image"
-            style={{objectFit:'cover', width:'2.5rem', height:'2.5rem'}}/>
-          </div>
-        <h3 >Hair cut</h3>
-      </Paper>
-      </Grid>
-      <Grid xs={3} style={{visibility:'hidden'}}>
-      <Paper elevation={5} style={categoryImgStyle}>
-      <div >
-            <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1629973621437-ce5af9.png" alt="Appliance-repair" itemScope itemProp="image"
-            style={{objectFit:'cover', width:'2.5rem', height:'2.5rem'}}/>
-          </div>
-        <h3 >Special Service for women</h3>
-      </Paper>
-      </Grid>
-      <Grid xs={3} >
-      <Paper elevation={5} style={categoryImgStyle}>
-      <div style={{position:'relative', left:'0%'}}>
-            <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1629973621437-ce5af9.png" alt="Appliance-repair" itemScope itemProp="image"
-            style={{objectFit:'cover', width:'2.5rem', height:'2.5rem'}}/>
-          </div>
-        <h3 >Special Service for women</h3>
-      </Paper>
-      </Grid>
-      <Grid xs={6} >
-      <Paper elevation={5} style={categoryImgStyle}>
-      <div >
-            <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/categories/category_v2/category_6fbad370.png" alt="Appliance-repair" itemScope itemProp="image"
-            style={{objectFit:'cover', width:'2.5rem', height:'2.5rem'}}/>
-          </div>
-        <h3 >Plumbers and Carpenters</h3>
-      </Paper>
-      </Grid>
+        <Grid xs={3} >
+          <Paper elevation={5} style={categoryImgStyle}>
+            <div >
+              <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/categories/category_v2/category_6b1f5250.png" alt="Appliance-repair" itemScope itemProp="image"
+                style={{ objectFit: 'cover', width: '2.5rem', height: '2.5rem' }} />
+            </div>
+            <h3 >Cleaning and Pest Control</h3>
+          </Paper>
+        </Grid>
+        <Grid xs={3} >
+          <Paper elevation={5} style={categoryImgStyle}>
+            <div >
+              <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/categories/category_v2/category_72d18950.png" alt="Appliance-repair" itemScope itemProp="image"
+                style={{ objectFit: 'cover', width: '2.5rem', height: '2.5rem' }} />
+            </div>
+            <h3 >Appliance Repair</h3>
+          </Paper>
+        </Grid>
+        <Grid xs={3} >
+          <Paper elevation={5} style={categoryImgStyle}>
+            <div >
+              <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1631679515206-a69389.png" alt="Appliance-repair" itemScope itemProp="image"
+                style={{ objectFit: 'cover', width: '2.5rem', height: '2.5rem' }} />
+            </div>
+            <h3 >Home Painting</h3>
+          </Paper>
+        </Grid>
+        <Grid xs={3} >
+          <Paper elevation={5} style={categoryImgStyle}>
+            <div >
+              <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1609757629780-2b2187.png" alt="Appliance-repair" itemScope itemProp="image"
+                style={{ objectFit: 'cover', width: '2.5rem', height: '2.5rem' }} />
+            </div>
+            <h3 >Hair cut</h3>
+          </Paper>
+        </Grid>
+        <Grid xs={3} style={{ visibility: 'hidden' }}>
+          <Paper elevation={5} style={categoryImgStyle}>
+            <div >
+              <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1629973621437-ce5af9.png" alt="Appliance-repair" itemScope itemProp="image"
+                style={{ objectFit: 'cover', width: '2.5rem', height: '2.5rem' }} />
+            </div>
+            <h3 >Special Service for women</h3>
+          </Paper>
+        </Grid>
+        <Grid xs={3} >
+          <Paper elevation={5} style={categoryImgStyle}>
+            <div style={{ position: 'relative', left: '0%' }}>
+              <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1629973621437-ce5af9.png" alt="Appliance-repair" itemScope itemProp="image"
+                style={{ objectFit: 'cover', width: '2.5rem', height: '2.5rem' }} />
+            </div>
+            <h3 >Special Service for women</h3>
+          </Paper>
+        </Grid>
+        <Grid xs={6} >
+          <Paper elevation={5} style={categoryImgStyle}>
+            <div >
+              <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/categories/category_v2/category_6fbad370.png" alt="Appliance-repair" itemScope itemProp="image"
+                style={{ objectFit: 'cover', width: '2.5rem', height: '2.5rem' }} />
+            </div>
+            <h3 >Plumbers and Carpenters</h3>
+          </Paper>
+        </Grid>
 
       </Grid>
     </div>
@@ -228,7 +228,7 @@ const LandingComponent = () => {
             }}
           >
             <Typography variant="h6" style={{ color: "black" }}>
-              Landing Page
+              Work-Connect
             </Typography>
             <Box flexGrow={1} />
             <Link to="/register/client">
@@ -274,12 +274,15 @@ const LandingComponent = () => {
           position: "relative",
           top: "11rem",
           color: "white ",
-          textShadow:'2px 2px 2px #333'
+          textShadow: '2px 2px 2px #333'
         }}
       >
-       Categories
+        Categories
       </h1>
       <CategoryComponent />
+      <div style={{ position: "absolute", bottom:"1%",left:"40%" }}>Photo by <a href="https://unsplash.com/@jeriden94?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jeriden Villegas</a> on <a href="https://unsplash.com/photos/VLPUm5wP5Z0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></div>
+
+
     </Paper>
   );
 };

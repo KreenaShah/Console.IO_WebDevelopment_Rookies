@@ -43,7 +43,7 @@ const WorkerDet = () => {
 
   const getWorkerProfile = async () => {
     try {
-      let response = await axios.get(`${URL}/worker/${emailStored}`);
+      let response = await axios.get(`http://localhost:3000/worker/${emailStored}`);
       console.log(response.data);
       setworkerProfile(response.data);
     } catch (error) {
@@ -81,7 +81,7 @@ const WorkerDet = () => {
               >
                 <p className="Details">Name: {workerProfile.name}</p>
                 <p className="Details">Description: {workerProfile.description}</p>
-                <p className="Details">Location: {workerProfile.location}</p>
+                <p className="Details">City: {workerProfile.city}</p>
                 <p className="Details">Contact: {workerProfile.contact}</p>
               </Box>
               <Box
