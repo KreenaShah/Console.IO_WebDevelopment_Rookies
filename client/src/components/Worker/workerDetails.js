@@ -29,13 +29,17 @@ const theme = createTheme({
   },
 });
 
+const defaultValues={
+  name:"",
+  description:"",
+  location:"",
+  contact:0
+}
+
 const WorkerDet = () => {
   const emailStored = localStorage.getItem("email");
-  {
-    console.log(emailStored);
-  }
 
-  const [workerProfile, setworkerProfile] = useState([]);
+  const [workerProfile, setworkerProfile] = useState(defaultValues);
 
   useEffect(() => {
     getWorkerProfile();

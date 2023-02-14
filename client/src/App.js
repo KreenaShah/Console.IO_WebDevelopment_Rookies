@@ -27,7 +27,7 @@ import WorkerOrders from './components/Worker/Orders';
 
 function App() {
   const user = localStorage.getItem("secret_token");
-  const isVerified=localStorage.getItem("isVerified");
+  const isVerified = localStorage.getItem("isVerified");
   return (
     <div className="App">
       <Routes>
@@ -55,9 +55,9 @@ function App() {
         {user && <Route path="/admin/workers" element={<Workers />}></Route>}
         {user && <Route path="/admin/verification" element={<VerificationTable />}></Route>}
         {user && <Route path="/admin/addnewadmins" element={<AddAdminComponent />}></Route>}
-        
+
         <Route path='/map' element={<MapWithRouting />}></Route>
-      </Routes>
+      </Routes> 
     </div>
   );
 }

@@ -31,7 +31,7 @@ const theme = createTheme({
 
 const ClientDet = () => {
 const emailStored = localStorage.getItem("email");
-{console.log(emailStored);}
+console.log(emailStored);
 
   const [clientProfile, setclientProfile] = useState([]);
 

@@ -22,9 +22,8 @@ import * as React from "react";
 import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import axios from "axios";
-import { deleteClientProfile , deleteWorkerProfile } from "../api";
+import { deleteClientProfile, deleteWorkerProfile } from "../api";
 import { StyledTableCell, StyledTableRow } from "./VerificationAdmin";
-import './Components.css'
 
 const URL = "http://localhost:3000";
 const imageURL = "http://localhost:3000/workerDocImages/";
@@ -88,21 +87,74 @@ const Workers = () => {
     getAllworkerProfiles();
   };
 
-    return ( 
-        <>
-        <div className='Workerbg' style={{height:'100vh'}}>
-        <Grid container spacing={2}>
-          <Grid item xs={2}>
-            <Sidebar />
-          </Grid>
-          <Grid item xs={10}>
-            <NavBar />
-            <workersComponent/>
-          </Grid>
+  return (
+    <>
+      <div className='Workerbg' style={{ height: '100vh' }}>
+      <Grid container spacing={2}>
+        <Grid item xs={2}>
+          <Sidebar />
         </Grid>
-        </div>
-      </>
-     );
-}
- 
+        <Grid item xs={10}>
+          <NavBar />
+
+          <TableContainer
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: 7,
+              marginLeft: 4.2,
+              width: 1070,
+            }}
+            component={Paper}
+          >
+            <Table aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>Name</StyledTableCell>
+                  <StyledTableCell>Category</StyledTableCell>
+                  <StyledTableCell>City</StyledTableCell>
+                  <StyledTableCell>Contact</StyledTableCell>
+                  <StyledTableCell>Gender</StyledTableCell>
+                  <StyledTableCell>Age</StyledTableCell>
+                  <StyledTableCell>Delete</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {workerProfiles.map((workerProfile) => (
+                  <StyledTableRow key={workerProfile._id}>
+                    <StyledTableCell component="th" scope="row">
+                      {workerProfile.name}
+                    </StyledTableCell>
+                    <StyledTableCell component="th" scope="row">
+                      {workerProfile.expertise}
+                    </StyledTableCell>
+                    <StyledTableCell component="th" scope="row">
+                      {workerProfile.city}
+                    </StyledTableCell>
+                    <StyledTableCell>{workerProfile.contact}</StyledTableCell>
+                    <StyledTableCell>{workerProfile.gender}</StyledTableCell>
+                    <StyledTableCell>{workerProfile.age}</StyledTableCell>
+                    <StyledTableCell>
+                      <Button
+                        sx={{ marginLeft: 3, backgroundColor: "#ff0000" }}
+                        variant="contained"
+                        onClick={() => deleteWorkerProfiles(workerProfile._id)}
+                      >
+                        <DeleteIcon />
+                        Delete
+                      </Button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
+      </Grid>
+      </div>
+    </>
+  );
+};
+
 export default Workers;

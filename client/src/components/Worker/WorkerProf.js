@@ -173,8 +173,8 @@ const WorkerProfile = () => {
                 />
                 <TextField
                   sx={{ width: "28ch", marginTop: 3 }}
-                  label="City"
-                  name="city"
+                  label="Location"
+                  name="location"
                   size="small"
                   color="white"
                   onChange={handleChange}

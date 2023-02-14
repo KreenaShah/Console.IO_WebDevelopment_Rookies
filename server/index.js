@@ -13,7 +13,6 @@ mongoose.connection.on('connected', con => console.log("con") );
 mongoose.connection.on('disconnected', con => console.log("discon") );
 // mongoose.Promise = global.Promise;
 
-require('./auth/auth');
 
 const routes = require('./routes/routes');
 const secureRoute = require('./routes/secure-routes');

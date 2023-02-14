@@ -2,15 +2,15 @@ const mongoose = require("mongoose");
 const Joi = require("joi");
 
 const workerProfileSchema = new mongoose.Schema({
-  name: { type: String, require: true },
-  description: { type: String, require: true },
-  city: { type: String, require: true },
-  contact: { type: Number, require: true },
-  expertise: { type: String, require: true },
-  experience: { type: String, require: true },
-  age: { type: Number, require: true },
-  gender: { type: String, require: true },
-  image: { type: String, require: true },
+  name: { type: String, require: true, default:'Worker' },
+  description: { type: String, require: true,default:'Worker' },
+  city: { type: String, require: true,default:'Worker'},
+  contact: { type: Number, require: true,default:'Worker' },
+  expertise: { type: String, require: true ,default:'Worker'},
+  experience: { type: String, require: true,default:'Worker' },
+  age: { type: Number, require: true,default:18 },
+  gender: { type: String, require: true,default:'Worker' },
+  image: { type: String, require: true,default:'Worker' },
   email:{type:String}
 });
 

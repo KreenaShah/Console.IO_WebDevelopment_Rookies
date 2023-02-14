@@ -111,6 +111,12 @@ const getWorkerProfile = async (request, response) => {
     const workerProfile = await WorkerProfile.findOne({
       email: request.params.email,
     });
+    if(workerProfile===null){
+      workerProfile=await WorkerProfile.create({
+        email:request.params.email,
+      })
+      workerProfile.save();
+    }
     // const user = await User.findById(request.params.id);
     response.status(200).json(workerProfile);
     // console.log(user);

@@ -6,7 +6,6 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { styled } from "@mui/material/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
-// import { Sidebar } from "./sidebar-admin";
 import { Sidebar } from "./SidebarAdmin";
 import Paper from "@mui/material/Paper";
 import TableContainer from "@mui/material/TableContainer";
@@ -14,7 +13,6 @@ import TablePagination from "@mui/material/TablePagination";
 import GppMaybeIcon from "@mui/icons-material/GppMaybe";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { createTheme } from "@mui/material/styles";
-// import { NavBar } from "./navbar-admin";
 import Navbar from "../Navbar";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -34,8 +32,6 @@ import {
 import LockIcon from "@mui/icons-material/Lock";
 import axios from "axios";
 
-import { NavBar } from "./NavbarAdmin";
-
 const AddAdminComponent = () => {
     // adding event listener for responsiveness
     const [width, setWindowWidth] = useState(0);
@@ -51,7 +47,7 @@ const AddAdminComponent = () => {
         setWindowWidth(width);
     };
 
-    const response = { responsive: width < 1100 };
+    const response = { responsive: width < 1030 };
     const resp = response.responsive;
     const response2 = { responsive: width < 700 };
     const resp2 = response2.responsive;
@@ -67,7 +63,7 @@ const AddAdminComponent = () => {
         // position: "relative",
         // bottom: resp ? "" : "6rem",
         // top: resp ? "3rem" : "",
-        right: resp ? "5rem" : "0rem",
+        left: resp ? "5rem" : "0rem",
         // justifyContent: resp2 ? "center" : "normal",
     };
     // backgroundImage: 'linear-gradient(227deg, #40c057 5%, #4dabf7 95%)'
@@ -129,8 +125,8 @@ const AddAdminComponent = () => {
                 .catch(err => console.log('error', err));
         }
         return (
-            <div style={{ height: "320px", position: "relative", top: "12rem" }}>
-                <form onSubmit={handleSubmit} style={{ display: resp2 ? "flex" : "inline-block" }}>
+            <div style={{ height: "320px", }}>
+                <form style={{ display: resp2 ? "flex" : "inline-block" }}>
                     <Grid item align="center" style={paperStyle}>
                         <Avatar style={avatarStyle}>
                             <LockIcon />
@@ -139,7 +135,7 @@ const AddAdminComponent = () => {
 
                         <TextField
                             id="outlined-basic"
-                            label="First Name"
+                            label="Name"
                             placeholder="Enter First Name"
                             variant="outlined"
                             fullWidth
@@ -150,13 +146,13 @@ const AddAdminComponent = () => {
                         />
                         <TextField
                             id="outlined-basic"
-                            label="Last Name"
+                            label="Lastname"
                             placeholder="Enter Lastname"
                             variant="outlined"
                             fullWidth
                             required
-                            onChange={handleChange}
                             style={textFieldStyle}
+                            onChange={handleChange}
                             name="lname"
                         />
                         <TextField
@@ -166,8 +162,8 @@ const AddAdminComponent = () => {
                             variant="outlined"
                             fullWidth
                             required
-                            onChange={handleChange}
                             style={textFieldStyle}
+                            onChange={handleChange}
                             name="email"
                         />
                         <TextField
@@ -178,26 +174,26 @@ const AddAdminComponent = () => {
                             variant="outlined"
                             fullWidth
                             required
-                            onChange={handleChange}
                             style={textFieldStyle}
+                            onChange={handleChange}
                             name="password"
                         />
 
-                        <Button type="submit" onSubmit={handleSubmit} variant="contained" fullWidth>
+                        <AddBtn type="submit" onSubmit={handleSubmit} variant="contained" fullWidth>
                             ADD
-                        </Button>
+                        </AddBtn>
                     </Grid>
                 </form>
             </div>
-        );
-    }
+        )
+    };
 
     const PresentAdmins = () => {
         const [listings, setListings] = useState([]);
         useEffect(() => {
             getAllAdmins();
-          }, []);
-        
+        }, []);
+
         const getAllAdmins = async () => {
             try {
                 let response = await axios.get("http://localhost:3000/getAdmins");
@@ -207,7 +203,7 @@ const AddAdminComponent = () => {
             }
         };
         return (
-            <Paper elevation={3} style={{ position: "relative", right: "15%", top: '30%', padding: '0.5rem', maxWidth: 300, borderRadius: "10px" }}>
+            <Paper elevation={3} style={{ position: "relative", top: resp3 ? '50%' : '30%', left: resp3 ? "26%" : '0%', padding: '0.5rem', maxWidth: 300, marginRight: '0rem', borderRadius: "10px" }}>
                 <h2 style={{ textAlign: 'left', paddingLeft: '1rem', paddingTop: '1rem' }}>Present Admins</h2>
                 <List
                     sx={{
@@ -218,42 +214,45 @@ const AddAdminComponent = () => {
                         overflowY: 'scroll'
                     }}
                 >
-                    {listings.map((listing) => {return(
-
-                        <ListItem>
-                            <ListItemAvatar>
-                                <Avatar>
-                                    <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1609757629780-2b2187.png" alt="haircut"
-                                        style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText primary={listing.fname} secondary={listing.email} />
-                        </ListItem>)
-                    })}
-
+                    {
+                        listings.map((listing) => {
+                            return (
+                                <ListItem>
+                                    <ListItemAvatar>
+                                        <Avatar>
+                                            <img src="https://res.cloudinary.com/urbanclap/image/upload/q_auto,f_auto,fl_progressive:steep,w_64/t_high_res_template/images/growth/home-screen/1609757629780-2b2187.png" alt="haircut"
+                                                style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+                                        </Avatar>
+                                    </ListItemAvatar>
+                                    <ListItemText primary={listing.fname} secondary={listing.email} />
+                                </ListItem>
+                            );
+                        })}
                 </List>
             </Paper>
         );
     }
     return (
         <>
-        <div className="clientBg AddAdminbg" style={{height:resp3 ? '140vh': '100vh'}}>
-            <Grid container spacing={2}>
-                <Grid item xs={2}>
-                    <Sidebar />
-                </Grid>
-                <Grid item xs={10}>
-                    <NavBar />
-                    <Grid container spacing={2}>
-                        <Grid item sm={12} xs={6}>
-                            <AddAdminForm />
-                        </Grid>
-                        <Grid item sm={12} xs={6}>
-                            <PresentAdmins />
+            <div className='AddAdminbg' style={{ height: resp3 ? '140vh' : '100vh' }}>
+                <Grid container spacing={2}>
+                    <Grid item xs={2}>
+                        <Sidebar />
+                    </Grid>
+                    <Grid item xs={10}>
+                        <div style={{ margin: '1rem 2rem' }}>
+                            <Navbar />
+                        </div>
+                        <Grid container spacing={2}>
+                            <Grid item sm={12} md={6}>
+                                <AddAdminForm />
+                            </Grid>
+                            <Grid item sm={12} md={6}>
+                                <PresentAdmins />
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
             </div>
         </>
     );
