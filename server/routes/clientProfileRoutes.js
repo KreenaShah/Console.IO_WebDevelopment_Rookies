@@ -13,6 +13,7 @@ const router = express.Router();
 router.post("/addClientProfile", upload.single("file"), addClientProfile);
 router.get("/allClientProfiles", getClientProfiles);
 router.get("/:email", getClientProfile);
+router.get("/:id", getClientProfile);
 router.put("/:id", editClientProfile);
 router.delete("/:id", deleteClientProfile);
 

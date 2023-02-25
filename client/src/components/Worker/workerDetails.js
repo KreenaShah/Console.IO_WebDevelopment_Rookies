@@ -18,6 +18,9 @@ import { Sidebar } from "./workerSidebar";
 import { NavBar } from "./workerNavbar";
 import Grid from "@mui/material/Grid";
 
+const URL = "http://localhost:3000";
+const imageURL = "http://localhost:3000/workerDocImages/";
+
 const theme = createTheme({
   palette: {
     white: {
@@ -58,51 +61,59 @@ const WorkerDet = () => {
     <div>
       <form className="inputBox">
         <ThemeProvider theme={theme}>
-            <Typography
-              color="#3bb19b"
+          <Typography
+            color="#3bb19b"
+            sx={{
+              fontSize: 40,
+              fontWeight: "bold",
+              paddingTop: 8,
+              marginBottom: 2.5,
+              textAlign: "center",
+            }}
+          >
+            Worker's Details
+          </Typography>
+          <Box sx={{ display: "flex" }}>
+            <Box
+              className="box"
               sx={{
-                fontSize: 40,
-                fontWeight: "bold",
-                paddingTop: 8,
-                marginBottom: 2.5,
-                textAlign: "center",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                width: 500,
+                backgroundColor: "#3bb19b",
+                borderTopLeftRadius: 20,
+                borderBottomLeftRadius: 20,
               }}
             >
-                Worker's Details
-            </Typography>
-            <Box sx={{display: 'flex'}}>
-              <Box
-                className="box"
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  width: 500,
-                  backgroundColor: "#3bb19b",
-                  borderTopLeftRadius: 20,
-                  borderBottomLeftRadius: 20,
-                }}
-              >
-                <p className="Details">Name: {workerProfile.name}</p>
-                <p className="Details">Description: {workerProfile.description}</p>
-                <p className="Details">City: {workerProfile.city}</p>
-                <p className="Details">Contact: {workerProfile.contact}</p>
-              </Box>
-              <Box
-                className="box"
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  width: 400,
-                  backgroundColor: "#fff",
-                  borderTopRightRadius: 20,
-                  borderBottomRightRadius: 20,
-                }}
-              >
-                <img className="workerImg"/>
-              </Box>
+              <p className="Details">Name: {workerProfile.name}</p>
+              <p className="Details">
+                Description: {workerProfile.description}
+              </p>
+              <p className="Details">City: {workerProfile.city}</p>
+              <p className="Details">Contact: {workerProfile.contact}</p>
             </Box>
+            <Box
+              className="box"
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                width: 400,
+                backgroundColor: "#fff",
+                borderTopRightRadius: 20,
+                borderBottomRightRadius: 20,
+              }}
+            >
+              <img
+                src={imageURL + workerProfile.image}
+                height="300"
+                width="350"
+                alt="imageof"
+                className="image"
+              ></img>
+            </Box>
+          </Box>
         </ThemeProvider>
       </form>
     </div>

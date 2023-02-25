@@ -25,6 +25,9 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use("/ClientImages", express.static("ClientImages"));
+app.use("/workerDocImages", express.static("workerDocImages"));
+
 app.use('/', routes);
 
 // Plug in the JWT strategy as a middleware so only verified users can access this route.

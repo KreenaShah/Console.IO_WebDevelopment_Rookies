@@ -101,12 +101,12 @@ export const Sidebar = () => {
             </Link>
           </ListItem>
           <ListItem>
-          <Link to="/client/profile/edit" style={linkStyle} className='links'>
+          <Link to="/client/profile/create" style={linkStyle} className='links'>
             <ShowButton>
               <GroupOutlinedIcon
                 style={{ color: "##9e9e9e", paddingRight: "1rem"}}
               />
-              Edit Profile
+              Create Profile
             </ShowButton>
             </Link>
           </ListItem>

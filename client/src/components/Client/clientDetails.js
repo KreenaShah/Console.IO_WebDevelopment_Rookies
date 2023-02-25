@@ -3,12 +3,9 @@ import React, { useState , useEffect } from 'react'
 import { Box, TextField , Typography,Button } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from 'axios';
-// import {ToastContainer , toast} from 'react-toastify';
-import MultiSelect from "react-multiple-select-dropdown-lite";
-import "react-multiple-select-dropdown-lite/dist/index.css";
-import '../Listing/Listing.css'
+import { Link } from "react-router-dom";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import './clientDetails.css'
-
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -17,6 +14,9 @@ import Select from '@mui/material/Select';
 import { Sidebar } from "./clientSidebar";
 import { NavBar } from "./clientNavbar";
 import Grid from "@mui/material/Grid";
+
+const URL = "http://localhost:3000";
+const imageURL = "http://localhost:3000/ClientImages/";
 
 const theme = createTheme({
   palette: {
@@ -30,10 +30,10 @@ const theme = createTheme({
 });
 
 const ClientDet = () => {
-const emailStored = localStorage.getItem("email");
-console.log(emailStored);
 
   const [clientProfile, setclientProfile] = useState([]);
+const emailStored = localStorage.getItem("email");
+console.log(emailStored);
 
   useEffect(() => {
     getClientProfile();
@@ -84,10 +84,13 @@ console.log(emailStored);
               <p className="Details">Contact: {clientProfile.contact} </p>
               <p className="Details">Email: {clientProfile.email} </p>
               <Button
-                sx={{ marginLeft: 3 ,color:"black",backgroundColor:"white"}}
+                sx={{ backgroundColor: "#800080" }}
                 variant="contained"
+                component={Link}
+                to={`/client/profile/update/${clientProfile._id}`}
               >
-                Accept
+                <BorderColorIcon />
+                Update Profile
               </Button>
             </Box>
             <Box
@@ -102,7 +105,19 @@ console.log(emailStored);
                 borderBottomRightRadius: 20,
               }}
             >
-              <img className="workerImg" />
+              <img
+                src={imageURL + clientProfile.image}
+                height="300"
+                width="350"
+                alt="imageof"
+                className="image"
+              ></img>
+              <Button
+                sx={{ marginLeft: 3, color: "black", backgroundColor: "white" }}
+                variant="contained"
+              >
+                Update Image
+              </Button>
             </Box>
           </Box>
         </ThemeProvider>
