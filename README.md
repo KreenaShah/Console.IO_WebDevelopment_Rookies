@@ -1,7 +1,7 @@
 # Team Name:- Console.IO
 # Hackathon:- Unscript Rookies 2023
-## Organizer:- Fr. Conceicao Rodrigues College of Engineering, Bandra, Mumbai
 ## Position:- Top 6 out of 30
+### Organizer:- Fr. Conceicao Rodrigues College of Engineering, Bandra, Mumbai
 
 #### Description: A Website For Connecting Local Workers and Clients wherein Clients can list their Problems and Workers can Send their Quotations for Fixing the Problems. This establishes a One-on-One connection between the Workers and the Clients, thus allowing both to decide what's best for them. The Client may choose to accept or reject the Quotation provided. If rejected, the Worker can no longer send new Quotations for the same Problem.
 
