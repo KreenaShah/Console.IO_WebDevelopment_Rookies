@@ -94,7 +94,7 @@ function App() {
           ></Route>
         )}
 
-        <Route path="/map" element={<MapWithRouting />}></Route>
+        {/* <Route path="/map" element={<MapWithRouting />}></Route> */}
       </Routes>
     </div>
   );
