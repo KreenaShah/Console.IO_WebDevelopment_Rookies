@@ -17,5 +17,3 @@
 ![ClinetProf](https://user-images.githubusercontent.com/52251412/221353249-7f3edcae-089e-4fb2-8431-2b2754173f3e.jpg)
 #### Client Query Page:
 ![ClientRaiseQuery](https://user-images.githubusercontent.com/52251412/221353244-1b5f9134-a4ee-4367-8b35-fc23dda29d34.jpg)
-#### Common Quotations Page:
-![ClientQuotations](https://user-images.githubusercontent.com/52251412/221353247-44d2deca-c790-4251-9540-d86a8aafca65.jpg)
