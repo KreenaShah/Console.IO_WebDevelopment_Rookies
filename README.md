@@ -11,9 +11,9 @@
 ![login](https://user-images.githubusercontent.com/52251412/221352970-02eed42b-5560-475f-b2c5-163e6dd6cdcd.jpg)
 #### Admin Page:
 ![admin](https://user-images.githubusercontent.com/52251412/221352962-1c1dd86b-d473-48c7-80a4-acba40f220d3.jpg)
-#### Common Dashboard for Workers and Clients:
-![dashboard](https://user-images.githubusercontent.com/52251412/221352953-25b95951-15fe-4bc3-8602-46e5f947e0da.jpg)
-#### Common Profile Page:
+#### Profile Page (similar profile page for workers):
 ![ClinetProf](https://user-images.githubusercontent.com/52251412/221353249-7f3edcae-089e-4fb2-8431-2b2754173f3e.jpg)
 #### Client Query Page:
 ![ClientRaiseQuery](https://user-images.githubusercontent.com/52251412/221353244-1b5f9134-a4ee-4367-8b35-fc23dda29d34.jpg)
+#### Common Dashboard for Workers and Clients:
+![dashboard](https://user-images.githubusercontent.com/52251412/221352953-25b95951-15fe-4bc3-8602-46e5f947e0da.jpg)
